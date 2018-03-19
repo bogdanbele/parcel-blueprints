@@ -24,7 +24,10 @@
   },
   "dependencies": {
     "parcel-plugin-pug": "^0.2.7",
-    "parcel-bundler": "^1.6.2"
+    "parcel-bundler": "^1.6.2",
+    "sass-lint": "1.12.1",
+    "pug-lint": "2.5.0",
+    "eslint": "4.18.2"
   },
   "description": ""
 }
