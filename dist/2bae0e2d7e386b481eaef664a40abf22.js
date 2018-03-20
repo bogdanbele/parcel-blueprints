@@ -71,7 +71,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({8:[function(require,module,exports) {
+})({11:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -81,7 +81,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (message) {
     console.log(message);
 };
-},{}],6:[function(require,module,exports) {
+},{}],10:[function(require,module,exports) {
 "use strict";
 
 var _message = require("./message");
@@ -91,7 +91,7 @@ var _message2 = _interopRequireDefault(_message);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _message2.default)('Hello World!');
-},{"./message":8}],13:[function(require,module,exports) {
+},{"./message":11}],20:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -113,7 +113,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '55973' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64007' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -214,5 +214,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[13,6])
+},{}]},{},[20,10])
 //# sourceMappingURL=/dist/2bae0e2d7e386b481eaef664a40abf22.map

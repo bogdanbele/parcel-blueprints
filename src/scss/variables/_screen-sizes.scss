@@ -1,0 +1,15 @@
+$xs: 0;
+// Phone
+$sm: 576px;
+// Tablet
+$md: 768px;
+// Desktop
+$lg: 990px;
+
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);

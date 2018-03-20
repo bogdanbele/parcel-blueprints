@@ -1,11 +1,6 @@
-body {
-  background-color: coral; }
-
 ::-webkit-input-placeholder {
   color: grey; }
-
 :-ms-input-placeholder {
   color: grey; }
-
 ::placeholder {
   color: grey; }

@@ -20,7 +20,8 @@
   "devDependencies": {
     "node-sass": "^4.7.2",
     "parcel-bundler": "^1.6.2",
-    "parcel-plugin-pug": "^0.2.7"
+    "parcel-plugin-pug": "^0.2.7",
+    "postcss-modules": "^1.1.0"
   },
   "dependencies": {
     "parcel-plugin-pug": "^0.2.7",
