@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel src/pug/index.pug --open",
-    "build": "parcel build src/pug/index.pug"
+    "build2": "parcel build src/pug/index.pug",
+    "build": "SET NODE_ENV=production && parcel build src/view/*.pug -d dist --public-url ./",
+    "dev": "parcel src/view/*.pug"
   },
   "repository": {
     "type": "git",
@@ -19,16 +21,18 @@
   "keywords": [],
   "devDependencies": {
     "node-sass": "^4.7.2",
-    "parcel-bundler": "^1.6.2",
-    "parcel-plugin-pug": "^0.2.7",
-    "postcss-modules": "^1.1.0"
+    "parcel-bundler": "^1.8.1",
+    "parcel-plugin-pug": "^0.3.8",
+    "postcss-modules": "^1.1.0",
+    "pug": "^2.0.3"
   },
   "dependencies": {
-    "parcel-plugin-pug": "^0.2.7",
-    "parcel-bundler": "^1.6.2",
-    "sass-lint": "1.12.1",
+    "eslint": "4.18.2",
+    "express": "^4.16.3",
+    "parcel": "^1.8.1",
     "pug-lint": "2.5.0",
-    "eslint": "4.18.2"
+    "sass-lint": "1.12.1",
+    "tslib": "^1.9.1"
   },
   "description": ""
 }
