@@ -5,8 +5,8 @@
   "scripts": {
     "start": "parcel src/pug/index.pug --open",
     "build2": "parcel build src/pug/index.pug",
-    "build": "SET NODE_ENV=production && parcel build src/view/*.pug -d dist --public-url ./",
-    "dev": "parcel src/view/*.pug"
+    "build": "SET NODE_ENV=production && parcel build src/pug/*.pug -d dist --public-url ./",
+    "dev": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -36,3 +36,4 @@
   },
   "description": ""
 }
+    

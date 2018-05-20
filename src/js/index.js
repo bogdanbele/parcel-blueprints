@@ -11,9 +11,6 @@ arr.map(value => {
     console.log(value);
 });
 
-!function() {
-    const root = document.getElementById('root');
-    let newLine = document.createElement('p');
-    newLine.innerText = 'This text is from js.';
-    root.appendChild(newLine);
-};
+const test = {
+    "test":"test"
+}
