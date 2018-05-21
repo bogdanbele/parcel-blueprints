@@ -11,6 +11,6 @@ arr.map(value => {
     console.log(value);
 });
 
-const test = {
+var test = {
     "test":"test"
-}
+};
