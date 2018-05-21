@@ -1,6 +1,4 @@
-import '../scss/index.scss';
-
-import common from './common';
+import common from '../../js/common';
 
 console.log(common);
 
