@@ -9,13 +9,24 @@ const app = express();
 app.set(express.static(__dirname + '/dist'));
 
 
-app.get('/secondpage',function(req,res){
-    res.sendFile(path.join(__dirname+'/dist/secondpage/secondpage.html'));
+
+
+let sitePath = __dirname+ `/dist/*/index.html`;
+console.log(sitePath);
+const siteFiles = glob.sync(sitePath);
+console.log(siteFiles);
+
+siteFiles.forEach(file => {
+  const requestPath = file.split('dist/')[1];
+  const expressPath = '/'+requestPath.split('/')[0];
+  console.log(expressPath);
+
+  app.get(expressPath,function(req,res){
+    res.sendFile(path.join(__dirname+'/dist/'+requestPath));
     console.log(__dirname);
   });
 
-
-console.log('test');
+});
 app.use(bundler.middleware());
 
 
