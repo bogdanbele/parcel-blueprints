@@ -43,8 +43,8 @@ siteFiles.forEach(file => {
   
 });
 
-
 let bundler = new Bundler('src/pages/index.pug');
+
 
 app.set(express.static(__dirname + '/dist'));
 
