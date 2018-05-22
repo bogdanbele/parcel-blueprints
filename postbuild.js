@@ -1,8 +1,8 @@
-const path    = require("path");
+const path = require("path");
 const fs = require('fs');
 const glob = require('glob');
 
-let dataPath = __dirname+ `/src/**/_data.pug`;
+let dataPath = __dirname + `/src/**/_data.pug`;
 const dataFiles = glob.sync(dataPath);
 
 dataFiles.forEach(file => {
