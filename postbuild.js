@@ -9,7 +9,6 @@ dataFiles.forEach(file => {
     console.log(file);
     fs.unlinkSync(file, (err) => {
         if (err) throw err;
-        console.log('succesfully deleted' + file );
     }
     );
 });
