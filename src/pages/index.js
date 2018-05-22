@@ -1,4 +1,4 @@
-import common from '../../js/common';
+import common from '../js/common';
 
 console.log(common);
 
