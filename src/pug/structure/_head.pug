@@ -1,0 +1,12 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset="UTF-8")
+        if data.meta.title
+            title= data.meta.title
+        meta(name="viewport" content="width=device-width, user-scalable=yes")
+        block head
+    body
+        block body
+        if data.mainStylePath
+            link(rel='stylesheet', href= data.mainStylePath )

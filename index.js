@@ -25,7 +25,7 @@ siteFiles.forEach(file => {
 	let data = fs.readFileSync(__dirname + '/src/pages/' + expressPath + '/data.json', 'utf8');
 	console.log(data);
 	let json = JSON.parse(data);
-	json.stylePath = '../scss/main.scss';
+	json.mainStylePath = '../scss/main.scss';
 	console.log('request path = '+ requestPath);
 	console.log('express path = ' + expressPath);
 	console.log('this is json' + json.title);
@@ -35,7 +35,7 @@ siteFiles.forEach(file => {
 		console.log(position);
 		for(i=0; i<position; i++){
 			console.log('LOOP')
-			json.stylePath = '../' + json.stylePath;
+			json.mainStylePath = '../' + json.mainStylePath;
 		}
 	}
 	else{
@@ -44,7 +44,7 @@ siteFiles.forEach(file => {
 	data = JSON.stringify(json);
 	console.log(json);
 
-	let dataAsPug = '-\n' + indentString(data, 1, { indent: '\t' });
+	let dataAsPug = '- data = ' + indentString(data, 1, { indent: '\t' });
 	//console.log(dataAsPug);
 
 	fs.writeFileSync(__dirname + '/src/pages/' + expressPath + '/_data.pug', dataAsPug, 'utf8');
