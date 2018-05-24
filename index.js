@@ -8,32 +8,51 @@ const indentString = require('indent-string');
 const app = express();
 
 let sitePath = __dirname + `/dist/**/index.html`;
-console.log(sitePath);
+//console.log(sitePath);
 const siteFiles = glob.sync(sitePath);
-console.log(siteFiles);
+//console.log(siteFiles);
 
 siteFiles.forEach(file => {
 	const requestPath = file.split('dist/')[1];
-	let expressPath = requestPath.split('/')[0];
-	console.log(expressPath);
+	let expressPath = requestPath.split('/index.html')[0];
+	//console.log(expressPath);
 
 	if (requestPath == 'index.html') {
-		console.log('root');
+		//console.log('root');
 		expressPath = '';
 	}
 
-	const data = fs.readFileSync(__dirname + '/src/pages/' + expressPath + '/data.json', 'utf8');
+	let data = fs.readFileSync(__dirname + '/src/pages/' + expressPath + '/data.json', 'utf8');
 	console.log(data);
+	let json = JSON.parse(data);
+	json.stylePath = '../scss/main.scss';
+	console.log('request path = '+ requestPath);
+	console.log('express path = ' + expressPath);
+	console.log('this is json' + json.title);
+	if(expressPath!==''){
+		let position;
+		position = requestPath.match(/\//ig).length;
+		console.log(position);
+		for(i=0; i<position; i++){
+			console.log('LOOP')
+			json.stylePath = '../' + json.stylePath;
+		}
+	}
+	else{
+		
+	}
+	data = JSON.stringify(json);
+	console.log(json);
 
 	let dataAsPug = '-\n' + indentString(data, 1, { indent: '\t' });
-	console.log(dataAsPug);
+	//console.log(dataAsPug);
 
 	fs.writeFileSync(__dirname + '/src/pages/' + expressPath + '/_data.pug', dataAsPug, 'utf8');
 
 	app.get(expressPath, function (req, res) {
-		console.log(__dirname + '/dist/' + requestPath);
+		//console.log(__dirname + '/dist/' + requestPath);
 		res.sendFile(path.join(__dirname + '/dist/' + requestPath));
-		console.log(__dirname);
+		//console.log(__dirname);
 	});
 
 });

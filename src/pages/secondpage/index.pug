@@ -1,3 +1,6 @@
+- data =
+include _data.pug
+
 doctype html
 html(lang='en')
   head
@@ -6,4 +9,6 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible', content='ie=edge')
     title Document
   body
+    link(rel='stylesheet', href= data.stylePath )
+    a(href='subpage/index.pug') To second.pug
     h1 I'm the second page
