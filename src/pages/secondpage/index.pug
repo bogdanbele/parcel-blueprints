@@ -1,13 +1,9 @@
-include _data.pug
+extends _layout.pug
 
-doctype html
-html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    meta(http-equiv='X-UA-Compatible', content='ie=edge')
-    title Document
-  body
-    link(rel='stylesheet', href= data.mainStylePath )
+block style
+    link(rel='stylesheet', href= data.styles.mainStylePath)
+
+block content
     a(href='subpage/index.pug') To second.pug
+    a(href='../index.pug') back 
     h1 I'm the second page

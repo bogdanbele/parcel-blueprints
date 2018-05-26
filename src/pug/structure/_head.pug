@@ -2,11 +2,13 @@ doctype html
 html(lang='en')
     head
         meta(charset="UTF-8")
-        if data.meta.title
-            title= data.meta.title
+        if data.title
+            title= data.title
         meta(name="viewport" content="width=device-width, user-scalable=yes")
         block head
     body
+        block style
+        if data.styles
+            each style in data.styles
+                link(href=style rel="stylesheet")
         block body
-        if data.mainStylePath
-            link(rel='stylesheet', href= data.mainStylePath )

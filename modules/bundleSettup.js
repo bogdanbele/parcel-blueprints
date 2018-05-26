@@ -32,7 +32,8 @@ function bundleSettup(directoryName, env) {
         let data = fs.readFileSync(directoryName + '/src/pages/' + expressPath + '/data.json', 'utf8');
         console.log(data);
         let json = JSON.parse(data);
-        json.mainStylePath = '../scss/main.scss';
+        json.styles = [];
+        let mainStylePath = '../scss/main.scss';
         console.log('request path = ' + requestPath);
         console.log('express path = ' + expressPath);
         console.log('this is json' + json.title);
@@ -42,15 +43,18 @@ function bundleSettup(directoryName, env) {
             console.log(position);
             for (i = 0; i < position; i++) {
                 console.log('LOOP')
-                json.mainStylePath = '../' + json.mainStylePath;
+                mainStylePath = '../' + mainStylePath;
             }
         }
+        const localScss = '_main.scss';
+        json.styles.push(localScss);
+        json.styles.push(mainStylePath);
         data = JSON.stringify(json);
-        console.log(json);
+        console.log(data);
 
         let dataAsPug = '- data = ' + indentString(data, 1, { indent: '\t' });
         //console.log(dataAsPug);
-        console.log(dataAsPug);
+        console.log('data as pug = ' + JSON.stringify(json));
         fs.writeFileSync(directoryName + '/src/pages/' + expressPath + '/_data.pug', dataAsPug, 'utf8');
         if (env == 'dev') {
             app.get('/' + expressPath, function (req, res) {
