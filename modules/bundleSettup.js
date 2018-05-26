@@ -47,10 +47,10 @@ function bundleSettup(directoryName, env) {
             }
         }
         const localScss = '_main.scss';
-        json.styles.push(localScss);
         json.styles.push(mainStylePath);
+        json.styles.push(localScss);
         data = JSON.stringify(json);
-        console.log(data);
+        console.log(json.styles);
 
         let dataAsPug = '- data = ' + indentString(data, 1, { indent: '\t' });
         //console.log(dataAsPug);
