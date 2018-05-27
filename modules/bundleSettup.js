@@ -13,36 +13,35 @@ function bundleSettup(directoryName, env) {
     const app = express();
 
     let sitePath = directoryName + `/src/**/index.pug`;
-    //console.log(sitePath);
     const siteFiles = glob.sync(sitePath);
-    //console.log(siteFiles);
     console.log(sitePath);
+
+    //////////////////// MAP WEBSITE ////////////////////
+
     siteFiles.forEach(file => {
-        console.log('test2');
+
         const requestPath = file.split('pages/')[1];
         const requestHtmlPath = requestPath.split('.pug')[0]+'.html';
         let expressPath = requestPath.split('/index.pug')[0];
-        //console.log(expressPath);
+
+        //////////////////// ROOT ////////////////////
 
         if (requestPath == 'index.pug') {
-            //console.log('root');
             expressPath = '';
         }
 
+        //////////////////// READ DATA.JSON ////////////////////
+
         let data = fs.readFileSync(directoryName + '/src/pages/' + expressPath + '/data.json', 'utf8');
-        console.log(data);
         let json = JSON.parse(data);
         json.styles = [];
+
         let mainStylePath = '../scss/main.scss';
-        console.log('request path = ' + requestPath);
-        console.log('express path = ' + expressPath);
-        console.log('this is json' + json.title);
+
         if (expressPath !== '') {
             let position;
             position = requestPath.match(/\//ig).length;
-            console.log(position);
             for (i = 0; i < position; i++) {
-                console.log('LOOP')
                 mainStylePath = '../' + mainStylePath;
             }
         }
@@ -52,9 +51,13 @@ function bundleSettup(directoryName, env) {
         data = JSON.stringify(json);
         console.log(json.styles);
 
+        //////////////////// MODIFY DATA ////////////////////
+
         let dataAsPug = '- data = ' + indentString(data, 1, { indent: '\t' });
-        //console.log(dataAsPug);
         console.log('data as pug = ' + JSON.stringify(json));
+
+        //////////////////// CREATE DATA.PUG ////////////////////
+
         fs.writeFileSync(directoryName + '/src/pages/' + expressPath + '/_data.pug', dataAsPug, 'utf8');
         if (env == 'dev') {
             app.get('/' + expressPath, function (req, res) {
@@ -62,10 +65,13 @@ function bundleSettup(directoryName, env) {
                 res.sendFile(path.join(directoryName + '/dist/' + requestHtmlPath));
                 //console.log(directoryName);
             });
-        }
+        } 
 
     });
     if (env == 'dev') {
+
+        //////////////////// START SERVER ////////////////////
+
         let bundler = new Bundler('src/pages/index.pug');
 
         app.set(express.static(__dirname + '/dist'));
