@@ -1,5 +1,5 @@
 {
     "links": {
-        "variables":"../scss/main"
+        "variables":"../scss/defaults"
         }
 }

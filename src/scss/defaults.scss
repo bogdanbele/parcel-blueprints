@@ -1,0 +1,36 @@
+///////////////////////////
+//////// Variables ////////
+///////////////////////////
+
+@import 'variables/colors';
+@import 'variables/pre-set-colors';
+@import 'variables/font-sizes';
+@import 'variables/screen-sizes';
+
+body {
+  background-color: $primary-color;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+* {
+  box-sizing: border-box;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  text-decoration: inherit;
+}
+
+img { 
+  max-width: 100%;
+}

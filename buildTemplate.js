@@ -4,6 +4,10 @@ var fs = require('fs');
 
 const args = process.argv.slice(2);
 
+const newLine = '\n';
+const newLineBig = '\n\n';
+const tab = '\t';
+
 console.log(args);
 
 //////////////////// BUILDING ////////////////////
@@ -15,22 +19,27 @@ if (args[0] == 'build') {
 
     let pageName = args[1];
     let folderPosition = '';
+
     const scssJsonFile = fs.readFileSync(__dirname + '/src/templates/scss.json', 'utf-8');
     let scssJson = JSON.parse(scssJsonFile);
+    const pugJsonFile = fs.readFileSync(__dirname + '/src/templates/pug.json', 'utf-8');
+    let pugJson = JSON.parse(pugJsonFile);
+    const dataJsonFile = fs.readFileSync(__dirname + '/src/templates/data.json', 'utf-8');
+
     console.log(scssJson);
     const subFolderRegex = /^(\w*)((\-)(\w*))/gm;
     const wordRegex = /^(\w*)$/gm;
     const patternCheck = pageName.match(wordRegex) || pageName.match(subFolderRegex);
+
     if ((pageName) && (patternCheck)) {
 
         let buildingPath = __dirname + '/src/pages';
         let includeHead = '../../pug/structure/_head.pug';
+
         console.log('building path = ' + buildingPath);
         if (pageName.match(wordRegex)) {
             buildingPath += '/' + pageName;
             folderPosition += '../';
-
-
         }
         else {
 
@@ -39,6 +48,7 @@ if (args[0] == 'build') {
             let folders = [];
             const mainFolder = pageName.split('-')[0];
             folders.push(mainFolder);
+
             while (pageName.match(subFolderRegex)) {
                 const parent = pageName.split('-')[0];
                 const subfolder = pageName.split('-')[1];
@@ -49,7 +59,7 @@ if (args[0] == 'build') {
             folders.forEach(element => {
                 let i = 0;
                 buildingPath += '/' + element;
-                if ( i == 0 ) folderPosition += '../';
+                if (i == 0) folderPosition += '../';
                 i++;
                 console.log('buildingPath = ' + buildingPath);
             });
@@ -57,16 +67,55 @@ if (args[0] == 'build') {
             console.log(pageName);
             console.log('folders =' + folders);
         }
-        const importMainScssPath = '' + folderPosition + scssJson.links.variables;
-        const importMainScss = '@import "' + importMainScssPath + '";';
+
+        //////////////////// SCSS ////////////////////
+
+        const importMainScss = '@import "' + folderPosition + scssJson.links.variables + '";';
+
+
+        //////////////////// PUG ////////////////////
+
+        const lineExtendLayout = 'extends _layout.pug' + newLineBig;
+        const lineBlockContent = 'block content' + newLine;
+        const indexPugLines = lineExtendLayout + lineBlockContent;
+
+        const lineDataPug = 'include _data.pug' + newLineBig;
+        const lineIncludeHead = 'include ' + folderPosition + pugJson.links.head + newLineBig;
+        const lineBodyAndContent = 'block body' + newLine + tab + 'block content';
+        const layoutPugLines = lineDataPug + lineIncludeHead + lineBodyAndContent;
+
+        //////////////////// JSON ////////////////////
+        // dataJsonFile
         console.log(importMainScss);
         console.log(folderPosition);
         console.log(scssJson.links);
-        if (!fs.existsSync(buildingPath)){
+        if (!fs.existsSync(buildingPath)) {
             fs.mkdirSync(buildingPath);
         }
         buildingPath += '/';
-        fs.writeFile(buildingPath + 'main.scss', importMainScss, function (err) {
+
+        //////////////////// WRITE SCSS ////////////////////
+
+        fs.writeFile(buildingPath + '_main.scss', importMainScss, function (err) {
+            if (err) throw err;
+            console.log('File is created successfully.');
+        });
+
+        //////////////////// WRITE PUG ////////////////////
+
+        fs.writeFile(buildingPath + 'index.pug', indexPugLines, function (err) {
+            if (err) throw err;
+            console.log('File is created successfully.');
+        });
+
+        fs.writeFile(buildingPath + '_layout.pug', layoutPugLines, function (err) {
+            if (err) throw err;
+            console.log('File is created successfully.');
+        });
+
+        //////////////////// WRITE JSON ////////////////////
+
+        fs.writeFile(buildingPath + 'data.json', dataJsonFile, function (err) {
             if (err) throw err;
             console.log('File is created successfully.');
         });
