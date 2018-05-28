@@ -25,6 +25,9 @@ if (args[0] == 'build') {
     const pugJsonFile = fs.readFileSync(__dirname + '/src/templates/pug.json', 'utf-8');
     let pugJson = JSON.parse(pugJsonFile);
     const dataJsonFile = fs.readFileSync(__dirname + '/src/templates/data.json', 'utf-8');
+    let dataJson = JSON.parse(dataJsonFile);
+    const linksJsonFile = fs.readFileSync(__dirname + '/src/templates/links.json', 'utf-8');
+    let linksJson = JSON.parse(linksJsonFile);
 
     console.log(scssJson);
     const subFolderRegex = /^(\w*)((\-)(\w*))/gm;
@@ -32,6 +35,8 @@ if (args[0] == 'build') {
     const patternCheck = pageName.match(wordRegex) || pageName.match(subFolderRegex);
 
     if ((pageName) && (patternCheck)) {
+
+        const mainFolder = pageName.split('-')[0];
 
         let buildingPath = __dirname + '/src/pages';
         let includeHead = '../../pug/structure/_head.pug';
@@ -46,7 +51,7 @@ if (args[0] == 'build') {
             //////////////////// SUB-PAGES ////////////////////
 
             let folders = [];
-            const mainFolder = pageName.split('-')[0];
+
             folders.push(mainFolder);
 
             while (pageName.match(subFolderRegex)) {
@@ -116,6 +121,16 @@ if (args[0] == 'build') {
         //////////////////// WRITE JSON ////////////////////
 
         fs.writeFile(buildingPath + 'data.json', dataJsonFile, function (err) {
+            if (err) throw err;
+            console.log('File is created successfully.');
+        });
+
+        //////////////////// ADD JSON LINK ////////////////////
+
+        const newLink = { "name": mainFolder, "link": '/' + mainFolder };
+        linksJson.push(newLink);
+
+        fs.writeFile(__dirname + '/src/templates/links.json', JSON.stringify(linksJson), function (err) {
             if (err) throw err;
             console.log('File is created successfully.');
         });

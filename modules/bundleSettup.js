@@ -1,4 +1,5 @@
 module.exports.bundleSettup = bundleSettup;
+const { mapWebsite } = require('../modules/mapWebsite');
 const fs = require('fs');
 const glob = require('glob');
 const express = require('express');
@@ -33,7 +34,10 @@ function bundleSettup(directoryName, env) {
         //////////////////// READ DATA.JSON ////////////////////
 
         let data = fs.readFileSync(directoryName + '/src/pages/' + expressPath + '/data.json', 'utf8');
+        let links = fs.readFileSync(directoryName + '/src/templates/links.json');
+        let linksJson = JSON.parse(links);
         let json = JSON.parse(data);
+        json.links = linksJson;
         json.styles = [];
 
         let mainStylePath = '../scss/main.scss';
@@ -53,12 +57,15 @@ function bundleSettup(directoryName, env) {
 
         //////////////////// MODIFY DATA ////////////////////
 
-        let dataAsPug = '- data = ' + indentString(data, 1, { indent: '\t' });
+        const dataAsPug = '- data = ' + indentString(data, 1, { indent: '\t' });
         console.log('data as pug = ' + JSON.stringify(json));
 
         //////////////////// CREATE DATA.PUG ////////////////////
 
         fs.writeFileSync(directoryName + '/src/pages/' + expressPath + '/_data.pug', dataAsPug, 'utf8');
+
+        
+
         if (env == 'dev') {
             app.get('/' + expressPath, function (req, res) {
                 //console.log(directoryName + '/dist/' + requestPath);
@@ -66,8 +73,15 @@ function bundleSettup(directoryName, env) {
                 //console.log(directoryName);
             });
         } 
+        
 
     });
+    let jsonLinks = {};
+    const webLinks = mapWebsite(directoryName);
+    jsonLinks.links = webLinks;
+    const linksAsPug ='- map = '+ indentString(JSON.stringify(jsonLinks), 1, { indent: '\t' });
+    fs.writeFileSync(directoryName + '/src/pages/_links.pug', linksAsPug, 'utf8');
+    console.log(jsonLinks);
     if (env == 'dev') {
 
         //////////////////// START SERVER ////////////////////
