@@ -9,14 +9,14 @@ html(lang='en')
         meta(name="viewport" content="width=device-width, user-scalable=yes")
         block head
         block style
+        link(href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet")
         if data.styles
             each style in data.styles
                 link(href=style rel="stylesheet")
-        
     body
         +content
-            block content
             .links
                 if data.links
                     each link in data.links
-                        a(href=link.link) #{link.name}
+                        +link('head')(href=link.link) #{link.name}
+            block content

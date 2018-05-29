@@ -39,12 +39,18 @@ if (args[0] == 'build') {
         const mainFolder = pageName.split('-')[0];
 
         let buildingPath = __dirname + '/src/pages';
+
+        let expressPath;
+        let expressName;
+        
         let includeHead = '../../pug/structure/_head.pug';
 
         console.log('building path = ' + buildingPath);
         if (pageName.match(wordRegex)) {
             buildingPath += '/' + pageName;
             folderPosition += '../';
+            expressPath = '/' +mainFolder;
+            expressName = mainFolder;
         }
         else {
 
@@ -62,12 +68,14 @@ if (args[0] == 'build') {
                 folders.push(subfolder);
             }
             folders.forEach(element => {
-                let i = 0;
                 buildingPath += '/' + element;
-                if (i == 0) folderPosition += '../';
-                i++;
+                folderPosition += '../';
                 console.log('buildingPath = ' + buildingPath);
             });
+            expressName = buildingPath.substring(buildingPath.lastIndexOf('/')+1);
+            console.log('express name = ' + expressName);
+            expressPath = buildingPath.split('/pages')[1];
+            console.log(expressPath);
             console.log(mainFolder);
             console.log(pageName);
             console.log('folders =' + folders);
@@ -127,7 +135,7 @@ if (args[0] == 'build') {
 
         //////////////////// ADD JSON LINK ////////////////////
 
-        const newLink = { "name": mainFolder, "link": '/' + mainFolder };
+        const newLink = { "name": expressName, "link": expressPath };
         linksJson.push(newLink);
 
         fs.writeFile(__dirname + '/src/templates/links.json', JSON.stringify(linksJson), function (err) {
