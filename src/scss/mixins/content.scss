@@ -1,8 +1,6 @@
-@import "defaults";
-@import "mixins";
+@import '../variables.scss';
 
-
-.content{
+.content {
     background-color: $dark-gray;
     display: flex;
     flex-direction: column;

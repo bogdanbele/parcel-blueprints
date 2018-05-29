@@ -86,7 +86,7 @@ if (args[0] == 'build') {
 
         const lineDataPug = 'include _data.pug' + newLineBig;
         const lineIncludeHead = 'include ' + folderPosition + pugJson.links.head + newLineBig;
-        const lineBodyAndContent = 'block body' + newLine + tab + 'block content';
+        const lineBodyAndContent = 'block body' + newLine;
         const layoutPugLines = lineDataPug + lineIncludeHead + lineBodyAndContent;
 
         //////////////////// JSON ////////////////////

@@ -1,3 +1,5 @@
+include ../mixins/mixins.pug
+
 doctype html
 html(lang='en')
     head
@@ -6,13 +8,15 @@ html(lang='en')
             title= data.title
         meta(name="viewport" content="width=device-width, user-scalable=yes")
         block head
-    body
         block style
         if data.styles
             each style in data.styles
                 link(href=style rel="stylesheet")
-                p   test
-        if data.links
-            each link in data.links
-                a(href=link.link) #{link.name}
-        block body
+        
+    body
+        +content
+            block content
+            .links
+                if data.links
+                    each link in data.links
+                        a(href=link.link) #{link.name}
