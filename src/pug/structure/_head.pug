@@ -13,6 +13,10 @@ html(lang='en')
         if data.styles
             each style in data.styles
                 link(href=style rel="stylesheet")
+        if data.jsLinks
+            each link in data.jsLinks
+                script(src=link)
+            #{link}
     body
         +content
             .links

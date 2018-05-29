@@ -39,17 +39,21 @@ function bundleSettup(directoryName, env) {
         let json = JSON.parse(data);
         json.links = linksJson;
         json.styles = [];
+        json.jsLinks = [];
 
         let mainStylePath = '../scss/main.scss';
+        let mainJsPath = '../js/main.js'
 
         if (expressPath !== '') {
             let position;
             position = requestPath.match(/\//ig).length;
             for (i = 0; i < position; i++) {
                 mainStylePath = '../' + mainStylePath;
+                mainJsPath = '../' + mainJsPath;
             }
         }
         const localScss = '_main.scss';
+        json.jsLinks.push(mainJsPath);
         json.styles.push(mainStylePath);
         json.styles.push(localScss);
         data = JSON.stringify(json);

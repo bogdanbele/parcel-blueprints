@@ -19,7 +19,7 @@
         margin: 1.5rem 2.5rem;
         font-weight: 600;
     }
-    &--head:after, &--head:visited:after {
+    &--head:after, &--head:visited {
         content: '';
         height: 3px;
         position: absolute;
@@ -31,5 +31,11 @@
     }
     &--head:hover:after, &--head:visited:hover:after {
         width: 100%;
-      }
+    }
+    &--head:link {
+        widows: 100%;
+    }
+    &--head:visited{
+        font-weight: 300;
+    }
 }
