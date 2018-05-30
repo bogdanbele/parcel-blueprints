@@ -1,0 +1,3 @@
+mixin logo(link, ...modifiers)
+	- modifiers = modifiers.map(modifier => `logo--${modifier}`);
+	img(src=data.paths + link class=(['logo', ...modifiers]))&attributes(attributes)

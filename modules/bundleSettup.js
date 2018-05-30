@@ -39,8 +39,9 @@ function bundleSettup(directoryName, env) {
         let json = JSON.parse(data);
         json.links = linksJson;
         json.styles = [];
+        json.paths = '';
         json.jsLinks = [];
-
+        let folderPath = '';
         let mainStylePath = '../scss/main.scss';
         let mainJsPath = '../js/main.js'
 
@@ -50,12 +51,14 @@ function bundleSettup(directoryName, env) {
             for (i = 0; i < position; i++) {
                 mainStylePath = '../' + mainStylePath;
                 mainJsPath = '../' + mainJsPath;
+                folderPath += '../';
             }
         }
         const localScss = '_main.scss';
         json.jsLinks.push(mainJsPath);
         json.styles.push(mainStylePath);
         json.styles.push(localScss);
+        json.paths= folderPath;
         data = JSON.stringify(json);
         console.log(json.styles);
 

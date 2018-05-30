@@ -1,5 +1,5 @@
 .link {
-    display: inline-block;
+    display: flex;
 
     &--button {
         text-align: center;
@@ -15,8 +15,8 @@
         display: inline-block;
         position: relative;
         text-align: center;
-        padding: 1rem 1rem;
-        margin: 1.5rem 2.5rem;
+        padding: 0.6rem 0.6rem;
+        margin: 1rem 1.5rem;
         font-weight: 600;
     }
     &--head:after, &--head:visited {

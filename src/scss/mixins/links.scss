@@ -1,0 +1,9 @@
+.links {
+    display: flex;
+    width: 100%;
+
+    &--space{
+        padding: 0 2.5%;
+        justify-content: space-around;
+    }
+}

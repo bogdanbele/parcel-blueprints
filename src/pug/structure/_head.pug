@@ -22,7 +22,8 @@ html(lang='en')
             #{link}
     body
         +content
-            .links
+            +logo('../assets/logo.png')
+            +links('space')
                 if data.links
                     each link in data.links
                         +link('head')(href=link.link id=link.name.toLowerCase()) #{link.name}
