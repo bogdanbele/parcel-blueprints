@@ -135,7 +135,7 @@ if (args[0] == 'build') {
 
         //////////////////// ADD JSON LINK ////////////////////
 
-        const newLink = { "name": expressName, "link": expressPath };
+        const newLink = { "name": expressName.charAt(0).toUpperCase() + expressName.slice(1), "link": expressPath };
         linksJson.push(newLink);
 
         fs.writeFile(__dirname + '/src/templates/links.json', JSON.stringify(linksJson), function (err) {
