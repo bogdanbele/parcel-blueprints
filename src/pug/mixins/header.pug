@@ -1,0 +1,4 @@
+mixin header(...modifiers)
+	- modifiers = modifiers.map(modifier => `header--${modifier}`);
+	div(class=(['header', ...modifiers]))&attributes(attributes)
+		block

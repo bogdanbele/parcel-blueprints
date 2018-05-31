@@ -13,3 +13,25 @@
         transition: 0.6s;
         width: 100%;
 }
+
+#inv-nav-main-btn .hamburger-inner, #inv-nav-main-btn .hamburger-inner::before, #inv-nav-main-btn .hamburger-inner::after {
+    background-color: $primary-color;
+}
+button#inv-nav-main-btn {
+    background-color: transparent;
+}
+#inv-nav-main-btn.is-active {
+    background-color: transparent;
+}
+
+#inv-nav-main-btn.left.is-active {
+    left: 200px;
+    right: auto;
+    z-index: 1000;
+}
+ul#inv-menu li a {
+    margin-top:50px;
+    @include breakpoint(md){
+        margin-top: 0px;
+    }
+}

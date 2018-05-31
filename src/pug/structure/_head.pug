@@ -10,21 +10,30 @@ html(lang='en')
         block head
         block style
         link(href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet")
+        link(href="https://cdn.rawgit.com/InventPartners/flex-responsive-burger-menu/master/css/nav.min.css" rel="stylesheet")
         if data.styles
             each style in data.styles
                 link(href=style rel="stylesheet")
         script(src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous")
+        script(src='https://cdn.rawgit.com/InventPartners/flex-responsive-burger-menu/master/js/nav.min.js')
         if data.jsLinks
             each link in data.jsLinks
                 script(src=link)
             #{link}
     body
-        +content
-            +logo('../assets/logo.png')
-            +links('space')
-                if data.links
-                    each link in data.links
-                        +link('head')(href=link.link id=link.name.toLowerCase()) #{link.name}
+        +page
+            +header
+                button#inv-nav-main-btn.hamburger.left(type='button')
+                    span.hamburger-box
+                        span.hamburger-inner
+
+                +logo('../assets/logo.png')
+                +links('space')
+                    if data.links 
+                        each link in data.links
+                            +link('head')(id=link.name.toLowerCase())
+                                a(href=link.link ) #{link.name}
+            +content
             block content

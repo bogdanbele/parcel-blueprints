@@ -1,0 +1,4 @@
+mixin page(...modifiers)
+	- modifiers = modifiers.map(modifier => `page--${modifier}`);
+	div(class=(['page', ...modifiers]))&attributes(attributes)
+		block

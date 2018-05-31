@@ -11,7 +11,7 @@ $(function() {
     console.log(substring);
     console.log();
     if ( locationPath !== ''){
-    $('.links a[href="' + pathName + '"]').addClass('active');
+    $('.links a[href="' + pathName + '"]').parent().addClass('active');
     }else{
         $('#home').addClass('active');
     }
