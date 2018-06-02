@@ -1,0 +1,10 @@
++header
+    button#inv-nav-main-btn.hamburger.left(type='button')
+        span.hamburger-box
+            span.hamburger-inner
+    +logo('../assets/logo.png')
+    +links('space')
+        if data.links 
+            each link in data.links
+                +link('head')(id=link.name.toLowerCase())
+                    a(href=link.link ) #{link.name}

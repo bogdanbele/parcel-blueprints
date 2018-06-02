@@ -15,6 +15,14 @@ function bundleSettup(directoryName, env) {
 
     let sitePath = directoryName + `/src/**/index.pug`;
     const siteFiles = glob.sync(sitePath);
+
+    let globals = fs.readFileSync(directoryName + '/src/templates/globals.json', 'utf8');
+    let globalsJson = JSON.parse(globals)
+    globals = JSON.stringify(globalsJson);
+    console.log(globals);
+    const globalsAsPug ='- globals = ' + globals;
+    console.log(globalsAsPug);
+    fs.writeFileSync(directoryName + '/src/templates/globals.pug', globalsAsPug, 'utf8');
     console.log(sitePath);
 
     //////////////////// MAP WEBSITE ////////////////////
@@ -34,6 +42,7 @@ function bundleSettup(directoryName, env) {
         //////////////////// READ DATA.JSON ////////////////////
 
         let data = fs.readFileSync(directoryName + '/src/pages/' + expressPath + '/data.json', 'utf8');
+
         let links = fs.readFileSync(directoryName + '/src/templates/links.json');
         let linksJson = JSON.parse(links);
         let json = JSON.parse(data);
@@ -64,8 +73,11 @@ function bundleSettup(directoryName, env) {
 
         //////////////////// MODIFY DATA ////////////////////
 
-        const dataAsPug = '- data = ' + indentString(data, 1, { indent: '\t' });
+        const dataAsPug = '- data = ' + indentString(data, 1, { indent: '\t' }) + '\n'
+        +'include '+folderPath+'../templates/globals.pug';
+        ;
         console.log('data as pug = ' + JSON.stringify(json));
+        
 
         //////////////////// CREATE DATA.PUG ////////////////////
 
