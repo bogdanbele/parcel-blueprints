@@ -54,7 +54,7 @@ ul#inv-menu > li > a {
 ul#inv-menu li:hover ul, ul#inv-menu li.menu-show ul {
     @include breakpoint(md){
     width: inherit;
-    color: #313131;
+    color: $dark-gray;
     font-weight: 500;
     background-color: #fff;
     }
@@ -82,6 +82,6 @@ ul#inv-menu li:hover ul li a:hover, ul#inv-menu li:hover ul li a:focus, ul#inv-m
 ul#inv-menu li:hover, ul#inv-menu li.menu-show {
     @include breakpoint(md){
         background-color: #fff;
-        color: #313131;
+        color: $dark-gray;
     }
 }

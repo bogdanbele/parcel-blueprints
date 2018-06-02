@@ -2,9 +2,12 @@ block footer
     +footer
         if globals.footer
             each menu in globals.footer
-                +list #{menu.name}
+                +list 
+                    a(href=menu.link )
+                        p #{menu.name}
                     for sub in menu.sub
-                        a(href=sub.link ) #{sub.name}
+                        li
+                            a(href=sub.link ) #{sub.name}
                 
 
 script(src="https://code.jquery.com/jquery-3.3.1.min.js"

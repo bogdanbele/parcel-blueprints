@@ -8,12 +8,11 @@ html(lang='en')
             title= data.title
         meta(name="viewport" content="width=device-width, user-scalable=yes")
         block style
-        link(href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet")
         link(href="https://cdn.rawgit.com/InventPartners/flex-responsive-burger-menu/master/css/nav.min.css" rel="stylesheet")
         if data.styles
             each style in data.styles
                 link(href=style rel="stylesheet")
-        
     body
         +page
             +header
