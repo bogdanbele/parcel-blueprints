@@ -1,0 +1,4 @@
+mixin footer(...modifiers)
+	- modifiers = modifiers.map(modifier => `footer--${modifier}`);
+	div(class=(['footer', ...modifiers]))&attributes(attributes)
+		block

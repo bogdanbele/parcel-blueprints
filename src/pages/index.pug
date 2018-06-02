@@ -1,20 +1,21 @@
 extends _layout.pug
 
 block content
-  .flex-box
-  .flex-item Item 1 #{data.title}
-  if data.rating
-    .flex-item test.test
-    .flex-item Item 3
-    .flex-item Item 4
-  if globals.links
-    .flex LINKS HERE
-    .flex-item Item 5
-  if map.links
-    p= sadasdadsa
-  each link in map.links
-    a(href=link) #{link}
-  a(href='secondpage/index.pug') To second.pug
-  script(src='index.js')
+  +content
+    .flex-box
+    .flex-item Item 1 #{data.title}
+    if data.rating
+      .flex-item test.test
+      .flex-item Item 3
+      .flex-item Item 4
+    if globals.links
+      .flex LINKS HERE
+      .flex-item Item 5
+    if map.links
+      p= sadasdadsa
+    each link in map.links
+      a(href=link) #{link}
+    a(href='secondpage/index.pug') To second.pug
+    script(src='index.js')
 
 

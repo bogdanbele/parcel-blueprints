@@ -2,16 +2,14 @@
 @import "mixins";
 
 
-.content{
-    background-color: #EEE;
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-}
-
 .active:after {
         transition: 0.6s;
         width: 100%;
+}
+
+#inv-nav-main-btn.right.is-active{
+    right:200px;
+    z-index: 1000;
 }
 
 #inv-nav-main-btn .hamburger-inner, #inv-nav-main-btn .hamburger-inner::before, #inv-nav-main-btn .hamburger-inner::after {

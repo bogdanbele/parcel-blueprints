@@ -1,10 +1,15 @@
-+header
-    button#inv-nav-main-btn.hamburger.left(type='button')
-        span.hamburger-box
-            span.hamburger-inner
-    +logo('../assets/logo.png')
-    +links('space')
-        if data.links 
-            each link in data.links
-                +link('head')(id=link.name.toLowerCase())
-                    a(href=link.link ) #{link.name}
+block footer
+    +footer
+        ul
+            li test
+            ul 
+                li test
+                li test 2
+
+script(src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous")
+script(src='https://cdn.rawgit.com/InventPartners/flex-responsive-burger-menu/master/js/nav.min.js')
+if data.jsLinks
+    each link in data.jsLinks
+        script(src=link)

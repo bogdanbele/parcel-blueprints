@@ -24,6 +24,8 @@ function bundleSettup(directoryName, env) {
     console.log(globalsAsPug);
     fs.writeFileSync(directoryName + '/src/templates/globals.pug', globalsAsPug, 'utf8');
     console.log(sitePath);
+    let requestPathsArray = {};
+    let links = [];
 
     //////////////////// MAP WEBSITE ////////////////////
 
@@ -32,7 +34,8 @@ function bundleSettup(directoryName, env) {
         const requestPath = file.split('pages/')[1];
         const requestHtmlPath = requestPath.split('.pug')[0]+'.html';
         let expressPath = requestPath.split('/index.pug')[0];
-
+        links.push(requestPath);
+        console.log(requestPath);
         //////////////////// ROOT ////////////////////
 
         if (requestPath == 'index.pug') {
@@ -92,7 +95,11 @@ function bundleSettup(directoryName, env) {
         
 
     });
-    const linksAsPug ='- map =' + indentString(JSON.stringify(globalsJson), 1, { indent: '\t' });
+
+    requestPathsArray.links = links;
+
+    console.log(requestPathsArray);
+    const linksAsPug ='- map =' + indentString(JSON.stringify(requestPathsArray), 1, { indent: '\t' });
     fs.writeFileSync(directoryName + '/src/pages/_links.pug', linksAsPug, 'utf8');
     if (env == 'dev') {
 

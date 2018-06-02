@@ -1,4 +1,4 @@
 mixin links(...modifiers)
 	- modifiers = modifiers.map(modifier => `links--${modifier}`);
-		ul(class=(['left','links', ...modifiers]))&attributes(attributes)#inv-menu
+		ul(class=(['right','links', ...modifiers]))&attributes(attributes)#inv-menu
 			block

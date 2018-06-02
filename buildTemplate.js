@@ -93,9 +93,10 @@ if (args[0] == 'build') {
         const indexPugLines = lineExtendLayout + lineBlockContent;
 
         const lineDataPug = 'include _data.pug' + newLineBig;
-        const lineIncludeHead = 'include ' + folderPosition + pugJson.links.head + newLineBig;
-        const lineBodyAndContent = 'block body' + newLine;
-        const layoutPugLines = lineDataPug + lineIncludeHead + lineBodyAndContent;
+        const lineIncludeHead = 'include ' + folderPosition + pugJson.links.head + newLine;
+        const lineIncludeFooter = 'include '+ folderPosition + pugJson.links.footer + newLineBig;
+        const lineBodyAndContent = 'block body' + newLineBig;
+        const layoutPugLines = lineDataPug + lineIncludeHead + lineBodyAndContent + lineIncludeFooter;;
 
         //////////////////// JSON ////////////////////
         // dataJsonFile

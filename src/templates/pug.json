@@ -1,5 +1,7 @@
 {
     "links": {
         "head":"../pug/structure/_head.pug"
+        ,
+        "footer":"../pug/structure/_footer.pug"
         }
 }

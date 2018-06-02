@@ -7,28 +7,19 @@ html(lang='en')
         if data.title
             title= data.title
         meta(name="viewport" content="width=device-width, user-scalable=yes")
-        block head 
         block style
         link(href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet")
         link(href="https://cdn.rawgit.com/InventPartners/flex-responsive-burger-menu/master/css/nav.min.css" rel="stylesheet")
         if data.styles
             each style in data.styles
                 link(href=style rel="stylesheet")
-        script(src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous")
-        script(src='https://cdn.rawgit.com/InventPartners/flex-responsive-burger-menu/master/js/nav.min.js')
-        if data.jsLinks
-            each link in data.jsLinks
-                script(src=link)
-            #{link}
+        
     body
         +page
             +header
-                button#inv-nav-main-btn.hamburger.left(type='button')
+                button#inv-nav-main-btn.hamburger.right(type='button')
                     span.hamburger-box
                         span.hamburger-inner
-
                 +logo('../assets/logo.png')
                 +links('space')
                     if globals.links 
@@ -40,5 +31,6 @@ html(lang='en')
                                         each slink in link.sublinks
                                             li
                                                 a(href=slink.link) #{slink.name}
-            +content
             block content
+        
+            
