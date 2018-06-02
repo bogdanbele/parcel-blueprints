@@ -15,6 +15,16 @@
         {
             "name": "About",
             "link": "/about"
+        },
+        {
+            "name": "Contact",
+            "link": "/contact",
+            "sublinks": [
+                {
+                    "name": "Test",
+                    "link": "/contact/test"
+                }
+            ]
         }
     ]
 }

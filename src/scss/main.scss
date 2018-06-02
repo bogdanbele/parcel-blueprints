@@ -29,9 +29,61 @@ button#inv-nav-main-btn {
     right: auto;
     z-index: 1000;
 }
-ul#inv-menu li a {
+
+ul#inv-menu > li > a {
     margin-top:50px;
     @include breakpoint(md){
         margin-top: 0px;
+    }
+}
+
+.link ul a {
+    font-weight: 300;
+    font-size: 0.6rem;
+    background-color: white;
+    @include breakpoint(md){
+        font-weight: 500;
+    }
+}
+
+.link ul li:hover ul li a:hover, ul#inv-menu li:hover ul li a:focus, ul#inv-menu li:hover ul li a:active, ul#inv-menu li.menu-show ul li a:hover, ul#inv-menu li.menu-show ul li a:focus, ul#inv-menu li.menu-show ul li a:active {
+    color: #313131;
+    font-weight: 500;
+    background-color: #fff;
+}
+
+
+ul#inv-menu li:hover ul, ul#inv-menu li.menu-show ul {
+    @include breakpoint(md){
+    width: inherit;
+    color: #313131;
+    font-weight: 500;
+    background-color: #fff;
+    }
+}
+
+ul#inv-menu li:hover ul li a, ul#inv-menu li.menu-show ul li a {
+    @include breakpoint(md){
+    width: inherit;
+    color: #313131;
+    font-weight: 500;
+    background-color: #fff;
+    margin: 0px;
+    padding: 0;
+    }
+}
+
+ul#inv-menu li:hover ul li, ul#inv-menu li.menu-show ul li {
+    @include breakpoint(md){
+    width: 90px;
+    border-bottom: 1px solid #aaa;
+    }
+}
+
+ul#inv-menu li:hover ul li a:hover, ul#inv-menu li:hover ul li a:focus, ul#inv-menu li:hover ul li a:active, ul#inv-menu li.menu-show ul li a:hover, ul#inv-menu li.menu-show ul li a:focus, ul#inv-menu li.menu-show ul li a:active,
+ul#inv-menu li:hover, ul#inv-menu li.menu-show {
+    @include breakpoint(md){
+        background-color: #fff;
+        color: #313131;
     }
 }

@@ -155,13 +155,10 @@ if (args[0] == 'build') {
                         console.log('File is created successfully.');
                     });
                 }
-                else {
-                    consoleError('Parent folder needs to exist in order to create link');
-                }
             }
         }
 
-        if (slashCount == 1) {
+        else if (slashCount == 1) {
 
             const newLink = { "name": expressName.charAt(0).toUpperCase() + expressName.slice(1), "link": expressPath };
             globalsJson.links.push(newLink);
@@ -170,6 +167,9 @@ if (args[0] == 'build') {
                 if (err) throw err;
                 console.log('File is created successfully.');
             });
+        }
+        else {
+            console.log('only folders and subfolders allowed for the moment');
         }
 
     }

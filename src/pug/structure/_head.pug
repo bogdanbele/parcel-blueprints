@@ -35,5 +35,10 @@ html(lang='en')
                         each link in globals.links
                             +link('head')(id=link.name.toLowerCase())
                                 a(href=link.link ) #{link.name}
+                                if link.sublinks
+                                    ul
+                                        each slink in link.sublinks
+                                            li
+                                                a(href=slink.link) #{slink.name}
             +content
             block content
