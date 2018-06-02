@@ -1,0 +1,4 @@
+mixin list(...modifiers)
+    - modifiers = modifiers.map(modifier => `list--${modifier}`);
+    ul(class=(['list', ...modifiers]))&attributes(attributes)
+        block

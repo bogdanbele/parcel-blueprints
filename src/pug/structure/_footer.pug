@@ -1,10 +1,11 @@
 block footer
     +footer
-        ul
-            li test
-            ul 
-                li test
-                li test 2
+        if globals.footer
+            each menu in globals.footer
+                +list #{menu.name}
+                    for sub in menu.sub
+                        a(href=sub.link ) #{sub.name}
+                
 
 script(src="https://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

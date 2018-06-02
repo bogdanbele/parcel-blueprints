@@ -11,5 +11,81 @@
         {
             "name": "Subpage",
             "link": "/secondpage/subpage"
+        }
+    ],
+    "footer": [
+        {
+            "name":"Blueprint",
+            "link":"/",
+            "sub":[
+                {
+                    "name":"About us",
+                    "link":"/"
+                },
+                {
+                    "name":"Help",
+                    "link":"/"
+                },
+                {
+                    "name":"Terms",
+                    "link":"/"
+                },
+                {
+                    "name":"Privacy",
+                    "link":"/"
+                },
+                {
+                    "name":"Delivery",
+                    "link":"/"
+                }
+                ]
+        },
+        {
+            "name":"Join Us",
+            "link":"/",
+            "sub":[
+                {
+                    "name":"Developer Jobs",
+                    "link":"/"
+                },
+                {
+                    "name":"Designer Jobs",
+                    "link":"/"
+                },
+                {
+                    "name":"Marketing Jobs",
+                    "link":"/"
+                },
+                {
+                    "name":"Internships",
+                    "link":"/"
+                },
+                {
+                    "name":"Business",
+                    "link":"/"
+                }
+                ]
+        },
+        {
+            "name":"Blog",
+            "link":"/",
+            "sub":[
+                {
+                    "name":"Product",
+                    "link":"/"
+                },
+                {
+                    "name":"Market",
+                    "link":"/"
+                },
+                {
+                    "name":"API",
+                    "link":"/"
+                },
+                {
+                    "name":"Archive",
+                    "link":"/"
+                }
+                ]
         }]
 }
