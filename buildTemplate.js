@@ -166,7 +166,7 @@ if (args[0] == 'build') {
             const newLink = { "name": expressName.charAt(0).toUpperCase() + expressName.slice(1), "link": expressPath };
             globalsJson.links.push(newLink);
             
-            fs.writeFile(__dirname + '/src/templates/globals.json', JSON.stringify(linksJson, null, 4), function (err) {
+            fs.writeFile(__dirname + '/src/templates/globals.json', JSON.stringify(globalsJson, null, 4), function (err) {
                 if (err) throw err;
                 console.log('File is created successfully.');
             });
