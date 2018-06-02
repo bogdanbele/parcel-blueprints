@@ -21,6 +21,20 @@
                     "link": "/contact/test"
                 }
             ]
+        },
+        {
+            "name": "About",
+            "link": "/about",
+            "sublinks": [
+                {
+                    "name": "Product",
+                    "link": "/about/product"
+                },
+                {
+                    "name": "Us",
+                    "link": "/about/us"
+                }
+            ]
         }
     ],
     "footer": [

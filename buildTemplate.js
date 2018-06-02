@@ -147,7 +147,7 @@ if (args[0] == 'build') {
                     console.log('it includes at ' + expressPath + ' and ' + lowerCaseName);
                     const newLink = { "name": expressName.charAt(0).toUpperCase() + expressName.slice(1), "link": expressPath };
                     console.log(newLink);
-                    globalsJson.links[i].sublinks = [];
+                    globalsJson.links[i].sublinks = globalsJson.links[i].sublinks || [];
                     globalsJson.links[i].sublinks.push(newLink);
                     console.log(globalsJson);
 
