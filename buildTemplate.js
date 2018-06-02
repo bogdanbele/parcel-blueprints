@@ -26,8 +26,8 @@ if (args[0] == 'build') {
     let pugJson = JSON.parse(pugJsonFile);
     const dataJsonFile = fs.readFileSync(__dirname + '/src/templates/data.json', 'utf-8');
     let dataJson = JSON.parse(dataJsonFile);
-    const linksJsonFile = fs.readFileSync(__dirname + '/src/templates/links.json', 'utf-8');
-    let linksJson = JSON.parse(linksJsonFile);
+    const globalsJsonFile = fs.readFileSync(__dirname + '/src/templates/globals.json', 'utf-8');
+    let globalsJson = JSON.parse(globalsJsonFile);
 
     console.log(scssJson);
     const subFolderRegex = /^(\w*)((\-)(\w*))/gm;
@@ -42,14 +42,14 @@ if (args[0] == 'build') {
 
         let expressPath;
         let expressName;
-        
+
         let includeHead = '../../pug/structure/_head.pug';
 
         console.log('building path = ' + buildingPath);
         if (pageName.match(wordRegex)) {
             buildingPath += '/' + pageName;
             folderPosition += '../';
-            expressPath = '/' +mainFolder;
+            expressPath = '/' + mainFolder;
             expressName = mainFolder;
         }
         else {
@@ -72,7 +72,7 @@ if (args[0] == 'build') {
                 folderPosition += '../';
                 console.log('buildingPath = ' + buildingPath);
             });
-            expressName = buildingPath.substring(buildingPath.lastIndexOf('/')+1);
+            expressName = buildingPath.substring(buildingPath.lastIndexOf('/') + 1);
             console.log('express name = ' + expressName);
             expressPath = buildingPath.split('/pages')[1];
             console.log(expressPath);
@@ -135,15 +135,49 @@ if (args[0] == 'build') {
 
         //////////////////// ADD JSON LINK ////////////////////
 
-        const newLink = { "name": expressName.charAt(0).toUpperCase() + expressName.slice(1), "link": expressPath };
-        linksJson.push(newLink);
+        const slashCount = (expressPath.match(/\//g) || []).length;
+        console.log('count = ' + slashCount);
 
-        fs.writeFile(__dirname + '/src/templates/links.json', JSON.stringify(linksJson), function (err) {
-            if (err) throw err;
-            console.log('File is created successfully.');
-        });
+        if (slashCount == 2) {
+
+            for (let i = 0; i < globalsJson.links.length; i++) {
+                const lowerCaseName = (globalsJson.links[i].name).toLowerCase();
+                if (expressPath.includes(lowerCaseName)) {
+                    console.log('it includes at ' + expressPath + ' and ' + lowerCaseName);
+                    const newLink = { "name": expressName.charAt(0).toUpperCase() + expressName.slice(1), "link": expressPath };
+                    console.log(newLink);
+                    globalsJson.links[i].sublinks = [];
+                    globalsJson.links[i].sublinks.push(newLink);
+                    console.log(globalsJson);
+
+                    fs.writeFile(__dirname + '/src/templates/globals.json', JSON.stringify(globalsJson, null, 4), function (err) {
+                        if (err) throw err;
+                        console.log('File is created successfully.');
+                    });
+                }
+                else {
+                    consoleError('Parent folder needs to exist in order to create link');
+                }
+            }
+        }
+
+        if (slashCount == 1) {
+
+            const newLink = { "name": expressName.charAt(0).toUpperCase() + expressName.slice(1), "link": expressPath };
+            globalsJson.links.push(newLink);
+            
+            fs.writeFile(__dirname + '/src/templates/globals.json', JSON.stringify(linksJson, null, 4), function (err) {
+                if (err) throw err;
+                console.log('File is created successfully.');
+            });
+        }
+
     }
     else {
         consoleError('Only words and dashes allowed');
     }
+}
+
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + this.slice(1);
 }

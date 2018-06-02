@@ -31,8 +31,8 @@ html(lang='en')
 
                 +logo('../assets/logo.png')
                 +links('space')
-                    if data.links 
-                        each link in data.links
+                    if globals.links 
+                        each link in globals.links
                             +link('head')(id=link.name.toLowerCase())
                                 a(href=link.link ) #{link.name}
             +content

@@ -42,11 +42,8 @@ function bundleSettup(directoryName, env) {
         //////////////////// READ DATA.JSON ////////////////////
 
         let data = fs.readFileSync(directoryName + '/src/pages/' + expressPath + '/data.json', 'utf8');
-
-        let links = fs.readFileSync(directoryName + '/src/templates/links.json');
-        let linksJson = JSON.parse(links);
         let json = JSON.parse(data);
-        json.links = linksJson;
+
         json.styles = [];
         json.paths = '';
         json.jsLinks = [];
@@ -95,12 +92,8 @@ function bundleSettup(directoryName, env) {
         
 
     });
-    let jsonLinks = {};
-    const webLinks = mapWebsite(directoryName);
-    jsonLinks.links = webLinks;
-    const linksAsPug ='- map = '+ indentString(JSON.stringify(jsonLinks), 1, { indent: '\t' });
+    const linksAsPug ='- map =' + indentString(JSON.stringify(globalsJson), 1, { indent: '\t' });
     fs.writeFileSync(directoryName + '/src/pages/_links.pug', linksAsPug, 'utf8');
-    console.log(jsonLinks);
     if (env == 'dev') {
 
         //////////////////// START SERVER ////////////////////

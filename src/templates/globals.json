@@ -13,10 +13,6 @@
             "link": "/secondpage/subpage"
         },
         {
-            "name": "Contact",
-            "link": "/contact"
-        },
-        {
             "name": "About",
             "link": "/about"
         }
