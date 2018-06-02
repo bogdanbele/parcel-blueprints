@@ -6,6 +6,8 @@ const express = require('express');
 const indentString = require('indent-string');
 const Bundler = require('parcel-bundler');
 const path = require("path");
+const md2pug = require('jstransformer')(require('jstransformer-markdown-it'));
+const html2pug = require('html2pug')
 
 
 
@@ -15,6 +17,24 @@ function bundleSettup(directoryName, env) {
 
     let sitePath = directoryName + `/src/**/index.pug`;
     const siteFiles = glob.sync(sitePath);
+    
+    let mdPath = directoryName + `/src/**/content.md`;
+    const mdFiles = glob.sync(mdPath);
+    let expressPath = '';
+    mdFiles.forEach(file => {
+        const requestPath = file.split('pages/')[1];
+        console.log('request path = ' + requestPath)
+        if(requestPath=='content.md'){
+            let expressPath = '';
+        }
+        else{
+            let expressPath = requestPath.split('/content.md')[0]+'/';
+        }
+        let data = fs.readFileSync(directoryName + '/src/pages/' + requestPath, 'utf8');
+        const html = md2pug.render(data).body;
+        const pug = html2pug(html, { tabs: true })
+        fs.writeFileSync(directoryName + '/src/pages/' + expressPath + 'content.pug', pug, 'utf8');
+    });
 
     let globals = fs.readFileSync(directoryName + '/src/templates/globals.json', 'utf8');
     let globalsJson = JSON.parse(globals)

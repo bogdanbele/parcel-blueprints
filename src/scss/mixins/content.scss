@@ -1,14 +1,19 @@
 @import '../variables.scss';
 
 .content {
-    background-color: #FFF;
     display: flex;
-    flex-direction: column;
+
     min-height: 100%;
     width: 90%;
+
+    background-color: #FFF;
+
+    flex-direction: column;
+
     @include breakpoint(lg){
         max-width: 1100px;
     }
     padding-bottom: 2.5rem;
+    
     box-shadow: 0 1px 0 0 $lighter-gray;
 }
