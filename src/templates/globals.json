@@ -13,30 +13,6 @@
             "link": "/secondpage/subpage"
         },
         {
-            "name": "Contact",
-            "link": "/contact",
-            "sublinks": [
-                {
-                    "name": "Test",
-                    "link": "/contact/test"
-                }
-            ]
-        },
-        {
-            "name": "About",
-            "link": "/about",
-            "sublinks": [
-                {
-                    "name": "Product",
-                    "link": "/about/product"
-                },
-                {
-                    "name": "Us",
-                    "link": "/about/us"
-                }
-            ]
-        },
-        {
             "name": "Blog",
             "link": "/blog",
             "sublinks": [
@@ -47,10 +23,6 @@
                 {
                     "name": "Second",
                     "link": "/blog/second"
-                },
-                {
-                    "name": "Third",
-                    "link": "/blog/third"
                 }
             ]
         }

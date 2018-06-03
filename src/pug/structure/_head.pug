@@ -7,6 +7,7 @@ html(lang='en')
         if data.title
             title= data.title
         meta(name="viewport" content="width=device-width, user-scalable=yes")
+        +favicon('../assets/favicon.ico')
         block style
         link(href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet")
         link(href="https://cdn.rawgit.com/InventPartners/flex-responsive-burger-menu/master/css/nav.min.css" rel="stylesheet")
@@ -32,7 +33,4 @@ html(lang='en')
                                         each slink in link.sublinks
                                             li
                                                 a(href=slink.link) #{slink.name}
-            p = #{data.paths+'test'}
             block content
-        
-            
