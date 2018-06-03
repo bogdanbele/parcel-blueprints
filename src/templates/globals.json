@@ -47,6 +47,10 @@
                 {
                     "name": "Second",
                     "link": "/blog/second"
+                },
+                {
+                    "name": "Third",
+                    "link": "/blog/third"
                 }
             ]
         }

@@ -7,7 +7,6 @@
     "build2": "parcel build src/pug/index.pug",
     "build": "NODE_ENV=production && node prebuild.js && parcel build src/pages/i*.pug -d dist --public-url ./ && node postbuild.js",
     "dev": "node index.js",
-    "build-ex": "NODE_ENV=production node index.js && --public-url ./ && node postbuild.js",
     "cleanData": "node postbuild.js",
     "template-build": "node buildTemplate.js"
   },
@@ -33,10 +32,7 @@
     "eslint": "4.18.2",
     "express": "^4.16.3",
     "hoek": "^5.0.3",
-    "html2pug": "^2.0.1",
     "indent-string": "^3.2.0",
-    "jstransformer-markdown-it": "^2.1.0",
-    "markdown-to-pug": "^1.0.11",
     "parcel": "^1.8.1",
     "pug-lint": "2.5.0",
     "sass-lint": "1.12.1",

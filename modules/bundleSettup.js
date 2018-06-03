@@ -10,6 +10,7 @@ const md2pug = require('jstransformer')(require('jstransformer-markdown-it'));
 const html2pug = require('html2pug')
 
 
+//////////////////// BUNDLE ////////////////////
 
 function bundleSettup(directoryName, env) {
 
@@ -21,29 +22,31 @@ function bundleSettup(directoryName, env) {
     let mdPath = directoryName + `/src/**/content.md`;
     const mdFiles = glob.sync(mdPath);
     let expressPath = '';
+
+    //////////////////// TRANSPILE MARKDOWN ////////////////////
+
     mdFiles.forEach(file => {
+
+        //////////////////// SUB-PAGES ////////////////////
+
         const requestPath = file.split('pages/')[1];
-        console.log('request path = ' + requestPath)
-        console.log('else express path');
-        console.log('request path = ' + requestPath);
         expressPath = requestPath.split('.md')[0] + '.pug';
-        console.log('express path = ' + expressPath);
 
         let data = fs.readFileSync(directoryName + '/src/pages/' + requestPath, 'utf8');
         const html = md2pug.render(data).body;
-        const pug = html2pug(html, { tabs: true })
-        console.log('express path = ' + expressPath);
+        const pug = html2pug(html, { tabs: true });
+
         fs.writeFileSync(directoryName + '/src/pages/' + expressPath, pug, 'utf8');
     });
+
+    //////////////////// GLOBALS ////////////////////
 
     let globals = fs.readFileSync(directoryName + '/src/templates/globals.json', 'utf8');
     let globalsJson = JSON.parse(globals)
     globals = JSON.stringify(globalsJson);
-    console.log(globals);
+
     const globalsAsPug = '- globals = ' + globals;
-    console.log(globalsAsPug);
     fs.writeFileSync(directoryName + '/src/templates/globals.pug', globalsAsPug, 'utf8');
-    console.log(sitePath);
     let requestPathsArray = {};
     let links = [];
 
@@ -55,7 +58,7 @@ function bundleSettup(directoryName, env) {
         const requestHtmlPath = requestPath.split('.pug')[0] + '.html';
         let expressPath = requestPath.split('/index.pug')[0];
         links.push(requestPath);
-        console.log(requestPath);
+
         //////////////////// ROOT ////////////////////
 
         if (requestPath == 'index.pug') {
@@ -71,25 +74,18 @@ function bundleSettup(directoryName, env) {
         json.paths = '';
         json.jsLinks = [];
         let folderPath = '';
-        let mainStylePath = '../scss/main.scss';
-        let mainJsPath = '../js/main.js'
+
+        //////////////////// CREATING ABSOLUTE PATHS ////////////////////
 
         if (expressPath !== '') {
             let position;
             position = requestPath.match(/\//ig).length;
             for (i = 0; i < position; i++) {
-                mainStylePath = '../' + mainStylePath;
-                mainJsPath = '../' + mainJsPath;
                 folderPath += '../';
             }
         }
-        const localScss = '_main.scss';
-        json.jsLinks.push(mainJsPath);
-        json.styles.push(mainStylePath);
-        json.styles.push(localScss);
         json.paths = folderPath;
         data = JSON.stringify(json);
-        console.log(json.styles);
 
         //////////////////// MODIFY DATA ////////////////////
 

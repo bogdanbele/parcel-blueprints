@@ -21,6 +21,8 @@ if (args[0] == 'build') {
 
     let folderPosition = '';
 
+    //////////////////// READING FILES ////////////////////
+
     const scssJsonFile = fs.readFileSync(__dirname + '/src/templates/scss.json', 'utf-8');
     let scssJson = JSON.parse(scssJsonFile);
     const pugJsonFile = fs.readFileSync(__dirname + '/src/templates/pug.json', 'utf-8');
@@ -30,10 +32,11 @@ if (args[0] == 'build') {
     const globalsJsonFile = fs.readFileSync(__dirname + '/src/templates/globals.json', 'utf-8');
     let globalsJson = JSON.parse(globalsJsonFile);
 
-    console.log(scssJson);
     const subFolderRegex = /^(\w*)((\-)(\w*))/gm;
     const wordRegex = /^(\w*)$/gm;
     const patternCheck = pageName.match(wordRegex) || pageName.match(subFolderRegex);
+
+    //////////////////// PATTERN CHECK ////////////////////
 
     if ((pageName) && (patternCheck)) {
 
@@ -47,6 +50,9 @@ if (args[0] == 'build') {
         let includeHead = '../../pug/structure/_head.pug';
 
         console.log('building path = ' + buildingPath);
+
+        //////////////////// CREATING ABSOLUTE PATH FOR ROOT  ////////////////////
+
         if (pageName.match(wordRegex)) {
             buildingPath += '/' + pageName;
             folderPosition += '../';
@@ -58,8 +64,9 @@ if (args[0] == 'build') {
             //////////////////// SUB-PAGES ////////////////////
 
             let folders = [];
-
             folders.push(mainFolder);
+
+            //////////////////// MAP SUBFOLDERS ////////////////////
 
             while (pageName.match(subFolderRegex)) {
                 const parent = pageName.split('-')[0];
@@ -68,18 +75,15 @@ if (args[0] == 'build') {
                 pageName = pageName.replace(replacePattern, '');
                 folders.push(subfolder);
             }
+
+            //////////////////// CREATING ABSOLUTE PATH ////////////////////
+
             folders.forEach(element => {
                 buildingPath += '/' + element;
                 folderPosition += '../';
-                console.log('buildingPath = ' + buildingPath);
             });
             expressName = buildingPath.substring(buildingPath.lastIndexOf('/') + 1);
-            console.log('express name = ' + expressName);
             expressPath = buildingPath.split('/pages')[1];
-            console.log(expressPath);
-            console.log(mainFolder);
-            console.log(pageName);
-            console.log('folders =' + folders);
         }
 
         //////////////////// SCSS ////////////////////
@@ -99,6 +103,9 @@ if (args[0] == 'build') {
         const lineBodyAndContent = 'block body' + newLine;
         const layoutPugLines = lineDataPug + lineIncludeHead + lineBodyAndContent + lineIncludeFooter;
         console.log(args[2] + ' = args 2');
+
+        //////////////////// MARKDOWN ////////////////////
+
         if (args[2] == 'article') {
             const lineContent = tab + '+content("md")' + newLine;
             const lineIncludeContent = tab + tab + 'include content.pug';
@@ -107,8 +114,6 @@ if (args[0] == 'build') {
 
         //////////////////// JSON ////////////////////
         // dataJsonFile
-        console.log(importMainScss);
-        console.log(folderPosition);
         console.log(scssJson.links);
         if (!fs.existsSync(buildingPath)) {
             fs.mkdirSync(buildingPath);
@@ -134,13 +139,14 @@ if (args[0] == 'build') {
             console.log('File is created successfully.');
         });
 
-        //////////////////// WRITE JSON ////////////////////
+        //////////////////// SUB-PAGES ////////////////////
 
         fs.writeFile(buildingPath + 'data.json', dataJsonFile, function (err) {
             if (err) throw err;
             console.log('File is created successfully.');
         });
 
+        //////////////////// WRITE ARTICLE ////////////////////
 
         if (args[2] == 'article') {
             fs.writeFile(buildingPath + 'content.md', '#Example', function (err) {
@@ -149,23 +155,20 @@ if (args[0] == 'build') {
             });
         }
 
-        //////////////////// ADD JSON LINK ////////////////////
+    //////////////////// CREATE JSON GLOBALS ////////////////////
 
         const slashCount = (expressPath.match(/\//g) || []).length;
-        console.log('count = ' + slashCount);
+
+        //////////////////// ONE SUBFOLDER ////////////////////
 
         if (slashCount == 2) {
 
             for (let i = 0; i < globalsJson.links.length; i++) {
                 const lowerCaseName = (globalsJson.links[i].name).toLowerCase();
                 if (expressPath.includes(lowerCaseName)) {
-                    console.log('it includes at ' + expressPath + ' and ' + lowerCaseName);
                     const newLink = { "name": expressName.charAt(0).toUpperCase() + expressName.slice(1), "link": expressPath };
-                    console.log(newLink);
                     globalsJson.links[i].sublinks = globalsJson.links[i].sublinks || [];
                     globalsJson.links[i].sublinks.push(newLink);
-                    console.log(globalsJson);
-
                     fs.writeFile(__dirname + '/src/templates/globals.json', JSON.stringify(globalsJson, null, 4), function (err) {
                         if (err) throw err;
                         console.log('File is created successfully.');
@@ -175,6 +178,8 @@ if (args[0] == 'build') {
         }
 
         else if (slashCount == 1) {
+
+            //////////////////// NO SUBFOLDER ////////////////////
 
             const newLink = { "name": expressName.charAt(0).toUpperCase() + expressName.slice(1), "link": expressPath };
             globalsJson.links.push(newLink);
