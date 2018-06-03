@@ -18,6 +18,7 @@ if (args[0] == 'build') {
     //////////////////// PAGES ////////////////////
 
     let pageName = args[1];
+
     let folderPosition = '';
 
     const scssJsonFile = fs.readFileSync(__dirname + '/src/templates/scss.json', 'utf-8');
@@ -90,13 +91,19 @@ if (args[0] == 'build') {
 
         const lineExtendLayout = 'extends _layout.pug' + newLineBig;
         const lineBlockContent = 'block content' + newLine;
-        const indexPugLines = lineExtendLayout + lineBlockContent;
+        let indexPugLines = lineExtendLayout + lineBlockContent;
 
         const lineDataPug = 'include _data.pug' + newLineBig;
         const lineIncludeHead = 'include ' + folderPosition + pugJson.links.head + newLine;
-        const lineIncludeFooter = 'include '+ folderPosition + pugJson.links.footer + newLineBig;
-        const lineBodyAndContent = 'block body' + newLineBig;
-        const layoutPugLines = lineDataPug + lineIncludeHead + lineBodyAndContent + lineIncludeFooter;;
+        const lineIncludeFooter = 'include ' + folderPosition + pugJson.links.footer + newLineBig;
+        const lineBodyAndContent = 'block body' + newLine;
+        const layoutPugLines = lineDataPug + lineIncludeHead + lineBodyAndContent + lineIncludeFooter;
+        console.log(args[2] + ' = args 2');
+        if (args[2] == 'article') {
+            const lineContent = tab + '+content("md")' + newLine;
+            const lineIncludeContent = tab + tab + 'include content.pug';
+            indexPugLines += lineContent + lineIncludeContent;
+        }
 
         //////////////////// JSON ////////////////////
         // dataJsonFile
@@ -134,6 +141,14 @@ if (args[0] == 'build') {
             console.log('File is created successfully.');
         });
 
+
+        if (args[2] == 'article') {
+            fs.writeFile(buildingPath + 'content.md', '#Example', function (err) {
+                if (err) throw err;
+                console.log('File is created successfully.');
+            });
+        }
+
         //////////////////// ADD JSON LINK ////////////////////
 
         const slashCount = (expressPath.match(/\//g) || []).length;
@@ -163,7 +178,7 @@ if (args[0] == 'build') {
 
             const newLink = { "name": expressName.charAt(0).toUpperCase() + expressName.slice(1), "link": expressPath };
             globalsJson.links.push(newLink);
-            
+
             fs.writeFile(__dirname + '/src/templates/globals.json', JSON.stringify(globalsJson, null, 4), function (err) {
                 if (err) throw err;
                 console.log('File is created successfully.');

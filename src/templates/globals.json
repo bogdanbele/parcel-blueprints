@@ -35,6 +35,20 @@
                     "link": "/about/us"
                 }
             ]
+        },
+        {
+            "name": "Blog",
+            "link": "/blog",
+            "sublinks": [
+                {
+                    "name": "First",
+                    "link": "/blog/first"
+                },
+                {
+                    "name": "Second",
+                    "link": "/blog/second"
+                }
+            ]
         }
     ],
     "footer": [

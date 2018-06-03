@@ -28,7 +28,8 @@ amnis tristis; mora Pylio infelix, superis. Quaerenti quoque!
 
 Quoque cum vaga aethera est; hunc nomine enituntur virgineum. Tuta iacentia
 laudibus imagine matris! Phoebe non, sex et profecisse patrem forem minus altae
-premit: occulta. Meque mecum pectora heres conveniunt opus. Poscitis liquescunt
+premit: occulta. M
+eque mecum pectora heres conveniunt opus. Poscitis liquescunt
 fata facta, rear pars!
 
 Favet sopore amicius armenta, lacusque. Peterem tibi ponit nati epotus placido,
