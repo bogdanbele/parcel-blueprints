@@ -1,0 +1,15 @@
+.row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    @include breakpoint(md){
+        flex-direction: row;
+    }
+    width: 100%;
+    &--between{
+        justify-content: space-between;
+    }
+    &--around{
+        justify-content: space-around;
+    }
+}

@@ -1,4 +1,50 @@
 .flex {
     display: flex;
-    padding: 2.5rem;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    border-radius: 1rem;
+    @include box_shadow(1);
+    transition: box-shadow 0.3s ease-in-out;
+    @include breakpoint(md){
+        &--1{
+            width: 90%;
+        }
+        &--2{
+            width: 40%;
+        }
+        &--3{
+            width: 30%;
+        }
+        &--4{
+            width: 22%;
+        }
+    }
+
+    &--centered{
+        align-items: center;
+        justify-content: center;
+    }
+
+    h1 {
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: $primary-color;
+        font-size: 1.6rem;
+    }
+    &--fit {
+        height: fit-content;
+    }
+}
+
+.flex > .item > p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.4rem;
+    margin-top: 0.7rem;
+    margin-bottom: 1.3rem;
+}
+.flex:hover{
+    @include box_shadow(3);
 }

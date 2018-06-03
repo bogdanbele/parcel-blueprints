@@ -1,38 +1,15 @@
 .link {
-    display: flex;
+    width: fit-content;
+    &--button{
+        height: 40px;
+    }
+    &--primary{
+        background-color: $dark-gray;
+        color: white;
+    }
+    @include box-shadow(1);
+}
 
-    &--button {
-        text-align: center;
-        background-color: $primary-color;
-		line-height: 1.25rem;
-		padding: 0.5rem 1.3rem;
-		border-radius: 0.600rem;
-		border-width: 0;
-        text-decoration: none;
-    }
-
-    &--head {
-        display: inline-block;
-        position: relative;
-        text-align: center;
-        font-weight: 600;
-    }
-    &--head:after, &--head:visited {
-        content: '';
-        height: 3px;
-        position: absolute;
-        left: 0;
-        width: 0%;
-        background: $primary-color;
-        transition: 0.2s;
-    }
-    &--head:hover:after, &--head:visited:hover:after {
-        width: 100%;
-    }
-    &--head:link {
-        widows: 100%;
-    }
-    &--head:visited{
-        font-weight: 300;
-    }
+.link--primary:hover {
+    color: $primary-color;
 }

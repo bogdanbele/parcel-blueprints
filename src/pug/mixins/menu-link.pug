@@ -1,0 +1,4 @@
+mixin menu-link(...modifiers)
+    - modifiers = modifiers.map(modifier => `menu-link--${modifier}`);
+    li(class=(['menu-link', ...modifiers]))&attributes(attributes)
+            block

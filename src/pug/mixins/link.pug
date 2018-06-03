@@ -1,4 +1,4 @@
-mixin link(...modifiers)
-    - modifiers = modifiers.map(modifier => `link--${modifier}`);
-    li(class=(['link', ...modifiers]))&attributes(attributes)
-            block
+mixin link(link,...modifiers)
+	- modifiers = modifiers.map(modifier => `link--${modifier}`);
+		a(href=link class=(['link', ...modifiers]))&attributes(attributes)
+			block

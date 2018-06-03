@@ -1,0 +1,4 @@
+mixin item(...modifiers)
+	- modifiers = modifiers.map(modifier => `item--${modifier}`);
+	div(class=(['item', ...modifiers]))&attributes(attributes)
+		block

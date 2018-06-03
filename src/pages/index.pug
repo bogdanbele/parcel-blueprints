@@ -2,21 +2,22 @@ extends _layout.pug
 
 block content
   +content
-    .flex-box
-    .flex-item Item 1 #{data.title}
-    if data.rating
-      .flex-item test.test
-      .flex-item Item 3
-      .flex-item Item 4
-    if globals.links
-      .flex LINKS HERE
-      .flex-item Item 5
-    if map.links
-      p= sadasdadsa
-    each link in map.links
-      a(href=link) #{link}
-    a(href='secondpage/index.pug') To second.pug
-    script(src='index.js')
+    .webPath
+      each link in map.links
+        a(href=link) #{link}
+    +row('around')
+      +flex('2','fit')
+        +item
+          h1 Pick up where you've left off
+          p Good to have you back once again ! Get back to where you've left off 
+          +link('/','button','primary')
+            p Log In
+      +flex('2','fit')
+        +item
+          h1 Create an account with Blueprint
+          p The ultra fast website builder and bundler. Transpiling, compiling and writting content has never been easier !
+          +link('/','button','primary')
+            p Sign up
   +content('md')
     include content.pug
 

@@ -11,20 +11,6 @@
         {
             "name": "Subpage",
             "link": "/secondpage/subpage"
-        },
-        {
-            "name": "Blog",
-            "link": "/blog",
-            "sublinks": [
-                {
-                    "name": "First",
-                    "link": "/blog/first"
-                },
-                {
-                    "name": "Second",
-                    "link": "/blog/second"
-                }
-            ]
         }
     ],
     "footer": [
