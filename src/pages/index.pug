@@ -1,15 +1,15 @@
 extends _layout.pug
 
 block content
+  .webPath
+    each link in map.links
+      a(href=link) #{link}
   +content
-    .webPath
-      each link in map.links
-        a(href=link) #{link}
     +row('around')
       +flex('2','fit')
         +item
-          h1 Pick up where you've left off
-          p Good to have you back once again ! Get back to where you've left off 
+          h1 Pick up where you've left off earlier
+          p Good to have you back once again ! Get back to where you've left off and start building your website again
           +link('/','button','primary')
             p Log In
       +flex('2','fit')
@@ -19,6 +19,14 @@ block content
           +link('/','button','primary')
             p Sign up
   +content('md')
-    include content.pug
+    include content.pug 
+  +content
+    +row
+      +flex('3','fit')
+        +item
+          img(src='dashboard.png')
+          h1 Use our brand new dashboard
+          p The ultra fast website builder and bundler. Transpiling, compiling and writting content has never been easier !
+
 
 
