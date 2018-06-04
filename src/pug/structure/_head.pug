@@ -31,6 +31,6 @@ html(lang='en')
                                 if link.sublinks
                                     ul
                                         each slink in link.sublinks
-                                            li
+                                            li(class='sublink')
                                                 a(href=slink.link) #{slink.name}
             block content

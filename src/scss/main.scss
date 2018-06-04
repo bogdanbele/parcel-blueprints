@@ -7,6 +7,17 @@
         width: 100%;
 }
 
+.active {
+    color: #333;
+    @include breakpoint(md){
+        color: $primary-color;
+    }
+}
+
 .webPath {
     display: none;
+}
+
+.active > a {
+    color: $primary-color !important;
 }

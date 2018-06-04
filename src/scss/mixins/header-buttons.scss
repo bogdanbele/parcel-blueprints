@@ -67,6 +67,7 @@ ul#inv-menu li:hover ul li, ul#inv-menu li.menu-show ul li {
     @include breakpoint(md){
     width: 90px;
     border-bottom: 1px solid #aaa;
+    margin-bottom: 1px;
     }
 }
 
@@ -75,5 +76,27 @@ ul#inv-menu li:hover, ul#inv-menu li.menu-show {
     @include breakpoint(md){
         background-color: #fff;
         color: $primary-color;
+    }
+}
+
+ul#inv-menu{
+    @include breakpoint(md){
+        display: inline-flex;
+    }
+}
+
+
+ul#inv-menu li ul li a {
+    font-size: 0.7rem;
+    background-color: #484545;
+}
+
+.sublink:after {
+        height: 2px;
+}
+
+.sublink{
+    @include breakpoint(md){
+        padding: 0;
     }
 }

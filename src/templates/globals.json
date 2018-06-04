@@ -5,12 +5,40 @@
             "link": "/"
         },
         {
-            "name": "Secondpage",
-            "link": "/secondpage"
+            "name": "About",
+            "link": "/about",
+            "sublinks": [
+                {
+                    "name": "The team",
+                    "link": "/about/team"
+                }
+            ]
         },
         {
-            "name": "Subpage",
-            "link": "/secondpage/subpage"
+            "name": "Contact",
+            "link": "/contact"
+        },
+        {
+            "name": "Product",
+            "link": "/product"
+        },
+        {
+            "name": "Blog",
+            "link": "/blog",
+            "sublinks": [
+                {
+                    "name": "Greetings",
+                    "link": "/blog/greetings"
+                },
+                {
+                    "name": "Starting",
+                    "link": "/blog/starting"
+                }
+            ]
+        },
+        {
+            "name": "Reviews",
+            "link": "/reviews"
         }
     ],
     "footer": [
