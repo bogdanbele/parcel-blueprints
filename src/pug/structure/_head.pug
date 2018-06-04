@@ -9,10 +9,12 @@ html(lang='en')
         meta(name="viewport" content="width=device-width, user-scalable=yes")
         +favicon('../assets/favicon.ico')
         block style
+        if data.meta.keywords
+            meta(name="keywords" content=data.meta.keywords)
         link(href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet")
         link(href="https://cdn.rawgit.com/InventPartners/flex-responsive-burger-menu/master/css/nav.min.css" rel="stylesheet")
         link(href=data.paths+'../scss/main.scss' rel="stylesheet")
-        link(href=data.paths+'_main.scss' rel="stylesheet")
+        link(href='_main.scss' rel="stylesheet")
         if data.styles
             each style in data.styles
                 link(href=style rel="stylesheet")

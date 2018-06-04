@@ -3,9 +3,7 @@
     padding: 1.5rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    width: 100%;
     border-radius: 1rem;
-    @include box_shadow(1);
     transition: box-shadow 0.3s ease-in-out;
     @include breakpoint(md){
         &--1{
@@ -19,6 +17,16 @@
         }
         &--4{
             width: 22%;
+        }
+        
+    }
+
+    &--text{
+        max-width: 600px;
+
+        p {
+            margin-bottom: 6px;
+            margin-top: 16px;
         }
     }
 
@@ -36,9 +44,19 @@
     &--fit {
         height: fit-content;
     }
+    &--column {
+        flex-direction: column;
+        
+    }
+    &--shadow {
+        @include box_shadow(1);
+    }
+    &--shadow:hover {
+        @include box_shadow(3);
+    }
 }
 
-.flex > .item > p {
+.content--md .flex > .item > p {
     font-size: 1.1rem;
     font-weight: 500;
     line-height: 1.4rem;
@@ -46,5 +64,5 @@
     margin-bottom: 1.3rem;
 }
 .flex:hover{
-    @include box_shadow(3);
+    
 }

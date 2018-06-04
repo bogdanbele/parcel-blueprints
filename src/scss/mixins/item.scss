@@ -1,5 +1,9 @@
 .item{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     img {
-        
+        height:100px;
+        margin-bottom: 40px;
     }
 }

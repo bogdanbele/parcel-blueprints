@@ -5,7 +5,7 @@
 
     min-height: 100%;
     width: 90%;
-
+    align-items: center;
     background-color: #FFF;
 
     flex-direction: column;
@@ -18,8 +18,9 @@
 
     &--md {
 
+        align-items: baseline;
         line-height: 1.5rem;
-        width: 90%;
+        width: 1000px;
         padding: 2.5rem 10% 2.5rem 10%;
         p {
             margin-top:0.5rem;

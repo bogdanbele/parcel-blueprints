@@ -2,20 +2,27 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    justify-content: space-between;
     
-    width: 100%;
+    width: 90%;
     &--between{
         justify-content: space-between;
     }
     &--around{
         justify-content: space-around;
     }
+
     @include breakpoint(md){
         flex-direction: row;
         margin-top: 5rem;
         padding-bottom: 5rem;
         border-bottom: 1px solid $lighter-gray;
-
+    }
+    &--clean{
+        margin-top: 0;
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 0;
     }
 }
 

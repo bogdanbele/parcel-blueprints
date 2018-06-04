@@ -1,3 +1,36 @@
 extends _layout.pug
 
 block content
+    +row('around','clean')
+        +flex('text')
+            +item
+                h1 Need help? Don’t hesitate to contact us!
+                p We understand that your time is valuable. We offer high class support by our knowledgeable customer support team whenever and wherever it fits you. Wether you need assistance setting up or have any issues with your existing website, we are here to help you out 24/7.
+
+                p Phone: +1 090-088-8888
+
+                p Email: support@blueprint.com
+        
+    +row('around','clean')
+        +flex('centered')
+            form
+                input(class='mt-input' placeholder='Name' type='text' value='' required='')
+                input(class='mt-input' placeholder='Email address' type='email' onblur="this.setAttribute('value', this.value);" value='' required='')
+                span.validation-text Please enter a valid email address.
+                input(class='mt-input' placeholder='Location' type='text' value='' required='')
+                textarea(placeholder='Message' rows='1' required='')
+                button(class='mt-button') Send
+        +flex('column')
+            +flex
+                +item
+                    h1 For other enquiries, 
+                    p Email us at:  
+                    p contact@blueprint.com
+                    p Or call: +1 437-995-0973
+            +flex
+                +item
+                    h1 Address 
+                    p 357 Spear Street
+                    p San Francisco, CA 94105
+                    p United States
+                    p Phone: +1 437-995-0973
