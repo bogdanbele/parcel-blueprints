@@ -4,8 +4,8 @@ doctype html
 html(lang='en')
     head
         meta(charset="UTF-8")
-        if data.title
-            title= data.title
+        if data.meta.title
+            title= data.meta.title
         meta(name="viewport" content="width=device-width, user-scalable=yes")
         +favicon('../assets/favicon.ico')
         block style

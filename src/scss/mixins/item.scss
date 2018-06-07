@@ -6,4 +6,19 @@
         height:100px;
         margin-bottom: 40px;
     }
+    &--review {
+        align-items: center;
+        height: fit-content;
+        img {
+            height:100px;
+            width:100px;    
+        }
+        .name{
+            margin-bottom: 1rem;
+            color: $primary-color;
+        }
+        p {
+            font-size: 0.8rem;
+        }
+    }
 }

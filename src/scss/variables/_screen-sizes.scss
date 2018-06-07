@@ -8,18 +8,18 @@ $breakpoints: (
 
 
 @mixin breakpoint( $breakpoint) {
-  @if map-has-key( $breakpoints, $breakpoint ) {
-      @media ( min-width: #{ map-get( $breakpoints, $breakpoint ) } ) {
-          @content;
-      }
-  } @else if type_of( $breakpoint ) == number and unit( $breakpoint ) == px or unit( $breakpoint ) == em or unit( $breakpoint ) == rem {
-      @media (min-width: $breakpoint ) {
-          @content;
-      }
-  } @else {
-      @warn "No value could be retrieved from `#{$breakpoint}`. "
-      + "It is either not defined in the `$breakpoints` map, or it is an invalid number of px, em, or rem.";
-  }
+    @if map-has-key( $breakpoints, $breakpoint ) {
+        @media ( min-width: #{ map-get( $breakpoints, $breakpoint ) } ) {
+                @content;
+        }
+    } @else if type_of( $breakpoint ) == number and unit( $breakpoint ) == px or unit( $breakpoint ) == em or unit( $breakpoint ) == rem {
+        @media (min-width: $breakpoint ) {
+                @content;
+        }
+    } @else {
+        @warn "No value could be retrieved from `#{$breakpoint}`. "
+        + "It is either not defined in the `$breakpoints` map, or it is an invalid number of px, em, or rem.";
+    }
 }
 
 @mixin box_shadow ($level) {
