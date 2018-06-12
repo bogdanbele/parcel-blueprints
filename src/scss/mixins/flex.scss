@@ -56,6 +56,11 @@
     &--shadow:hover {
         @include box_shadow(3);
     }
+    &--line{
+        padding: 0.8rem;
+        margin: 0;
+        width:100%;
+    }
 }
 
 .content--md .flex > .item > p {

@@ -5,40 +5,12 @@
             "link": "/"
         },
         {
-            "name": "About",
-            "link": "/about",
-            "sublinks": [
-                {
-                    "name": "The team",
-                    "link": "/about/team"
-                }
-            ]
+            "name": "Matches",
+            "link": "/matches"
         },
         {
-            "name": "Contact",
-            "link": "/contact"
-        },
-        {
-            "name": "Product",
-            "link": "/product"
-        },
-        {
-            "name": "Blog",
-            "link": "/blog",
-            "sublinks": [
-                {
-                    "name": "Greetings",
-                    "link": "/blog/greetings"
-                },
-                {
-                    "name": "Starting",
-                    "link": "/blog/starting"
-                }
-            ]
-        },
-        {
-            "name": "Reviews",
-            "link": "/reviews"
+            "name": "Stadiums",
+            "link": "/stadiums"
         }
     ],
     "footer": [

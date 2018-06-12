@@ -5,41 +5,15 @@ block content
     each link in map.links
       a(href=link) #{link}
   +content
-    +row
-      +flex('3')
-        +item
-          img(src='rocket.svg')
-          div
-            h1 Fast and easy
-            p Lightning fast building and running time with the help of the latest technology and libraries.
-      +flex('3')
-        +item
-          img(src='domain.svg')
-          div
-            h1 User-friendly SEO
-            p Easy to use template assists you in selecting keywords and keeping track of your analaytics.
-      +flex('3')
-        +item
-          img(src='conversation.svg')
-          div
-            h1 24/7 Support
-            p Programing should be easy for everyone! Our support team is here to help whenever you need.
-  +content('md')
-    include content.pug 
-  +content
+    +flex('1')(style='justify-content: center;')
+      img(src='2018_FIFA_World_Cup.svg')
     +row('around')
-      +flex('2','fit')
-        +item
-          h1 Pick up where you've left off
-          p Good to have you back ! Log in and pick up where you've left off and start building your website again.
-          +link('/','button','primary')
-            p Log In
-      +flex('2','fit')
-        +item
-          h1 Sign up with Blueprint
-          p Create an account for the ultra fast website builder and bundler. Transpiling, compiling and writing content has never been easier.
-          +link('/','button','primary')
-            p Sign up
-
+      each group in remoteData.groups
+        +flex('2','shadow','centered')(style='flex-wrap: wrap;')
+          h1(style='margin-left: 0.7rem;') #{group.name}
+          each team in group.teams
+            +flex('line')
+              h2 #{team.name}
+                p #{team.code}
 
 

@@ -1,0 +1,13 @@
+extends _layout.pug
+
+block content
+    +content
+        +row('around')
+            each stadium in data.stadiums.stadiums
+                +flex('3','stadium')
+                    .left
+                        h1 #{stadium.name}
+                    .right
+                        p Capacity : #{stadium.capacity}
+                        p City : #{stadium.city}
+                        p Timezone : #{stadium.timezone}

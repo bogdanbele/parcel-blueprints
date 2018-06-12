@@ -7,7 +7,9 @@ const indentString = require('indent-string');
 const Bundler = require('parcel-bundler');
 const path = require("path");
 const md2pug = require('jstransformer')(require('jstransformer-markdown-it'));
-const html2pug = require('html2pug')
+const html2pug = require('html2pug');
+const getJSON = require('get-json');
+var bodyParser = require('body-parser');
 
 
 //////////////////// BUNDLE ////////////////////
@@ -115,13 +117,26 @@ function bundleSettup(directoryName, env) {
     requestPathsArray.links = links;
 
     console.log(requestPathsArray);
-    const linksAsPug = '- map =' + indentString(JSON.stringify(requestPathsArray), 1, { indent: '\t' });
-    fs.writeFileSync(directoryName + '/src/pages/_links.pug', linksAsPug, 'utf8');
+    let worldCupData;
+    console.log(worldCupData);
+    let linksAsPug = '- map =' + indentString(JSON.stringify(requestPathsArray), 1, { indent: '\t' }) + '\n' ;
+            getJSON('https://raw.githubusercontent.com/openfootball/world-cup.json/master/2018/worldcup.groups.json', function(error, data){
+                worldCupData = data;
+                linksAsPug += '- remoteData =' + indentString(JSON.stringify(worldCupData), 1, { indent: '\t' });
+                fs.writeFileSync(directoryName + '/src/pages/_links.pug', linksAsPug, 'utf8');
+            });
     if (env == 'dev') {
+
+
+
+
 
         //////////////////// START SERVER ////////////////////
 
         let bundler = new Bundler('src/pages/index.pug');
+        
+        app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({ extended: false }));
 
         app.set(express.static(__dirname + '/dist'));
         app.use(bundler.middleware());
