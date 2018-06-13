@@ -18,10 +18,13 @@ exec('echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && 
     console.log(`stderr: ${stderr}`);
 });
 
+console.log('before bundler');
 
-bundleSettup(__dirname, 'dev');
 
 let bundler = new Bundler('src/pages/index.pug');
+bundleSettup(__dirname, 'dev');
+
+console.log('after bundler');
 
 app.get('/', function (req, res) {
     //console.log(directoryName + '/dist/' + requestPath);
