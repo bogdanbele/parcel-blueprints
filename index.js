@@ -21,11 +21,6 @@ app.get('/', function (req, res) {
     //console.log(directoryName);
 });
 
-app.get('/matches',function (req, res) {
-    //console.log(directoryName + '/dist/' + requestPath);
-    res.sendFile(__dirname + '/dist/matches/index.html');
-    //console.log(directoryName);
-});
 
 app.get('/stadiums',function (req, res) {
     //console.log(directoryName + '/dist/' + requestPath);
