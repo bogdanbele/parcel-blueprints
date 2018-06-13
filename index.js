@@ -32,7 +32,5 @@ console.log('after paths');
 
 
 
-
-app.use(bundler.middleware());
 console.log('after middleware');
 app.listen(5000);
