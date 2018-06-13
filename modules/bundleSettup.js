@@ -86,6 +86,7 @@ function bundleSettup(directoryName, env) {
             }
         }
         json.paths = folderPath;
+        console.log('folder path = '+ folderPath);
         data = JSON.stringify(json);
 
         //////////////////// MODIFY DATA ////////////////////
