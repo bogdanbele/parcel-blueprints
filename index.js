@@ -1,6 +1,5 @@
 const { bundleSettup } = require('./modules/bundleSettup');
 const express = require('express');
-var bodyParser = require('body-parser');
 const Bundler = require('parcel-bundler');
 const app = express();
 
@@ -34,9 +33,10 @@ app.get('/stadiums',function (req, res) {
     //console.log(directoryName);
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+console.log('after paths');
 
-app.set(express.static(__dirname + '/dist'));
+
+
 app.use(bundler.middleware());
+console.log('after middleware');
 app.listen(5000);
