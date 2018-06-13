@@ -22,6 +22,7 @@ function bundleSettup(directoryName, env) {
     let mdPath = directoryName + `/src/**/content.md`;
     const mdFiles = glob.sync(mdPath);
     let expressPath = '';
+    
 
     //////////////////// TRANSPILE MARKDOWN ////////////////////
 

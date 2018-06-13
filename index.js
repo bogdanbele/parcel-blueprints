@@ -7,16 +7,6 @@ const app = express();
 
 const { exec } = require('child_process');
 console.log('here in script');
-exec('echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p', (err, stdout, stderr) => {
-    if (err) {
-    // node couldn't execute the command
-    return;
-    }
-
-  // the *entire* stdout and stderr (buffered)
-    console.log(`stdout: ${stdout}`);
-    console.log(`stderr: ${stderr}`);
-});
 
 console.log('before bundler');
 
