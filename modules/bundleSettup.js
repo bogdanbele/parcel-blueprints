@@ -2,21 +2,19 @@ module.exports.bundleSettup = bundleSettup;
 const { mapWebsite } = require('../modules/mapWebsite');
 const fs = require('fs');
 const glob = require('glob');
-const express = require('express');
 const indentString = require('indent-string');
-const Bundler = require('parcel-bundler');
 const path = require("path");
 const md2pug = require('jstransformer')(require('jstransformer-markdown-it'));
 const html2pug = require('html2pug');
 const getJSON = require('get-json');
-var bodyParser = require('body-parser');
+
 
 
 //////////////////// BUNDLE ////////////////////
 
 function bundleSettup(directoryName, env) {
 
-    const app = express();
+    
 
     let sitePath = directoryName + `/src/**/index.pug`;
     const siteFiles = glob.sync(sitePath);
@@ -104,11 +102,7 @@ function bundleSettup(directoryName, env) {
 
 
         if (env == 'dev') {
-            app.get('/' + expressPath, function (req, res) {
-                //console.log(directoryName + '/dist/' + requestPath);
-                res.sendFile(path.join(directoryName + '/dist/' + requestHtmlPath));
-                //console.log(directoryName);
-            });
+            
         }
 
 
@@ -133,13 +127,6 @@ function bundleSettup(directoryName, env) {
 
         //////////////////// START SERVER ////////////////////
 
-        let bundler = new Bundler('src/pages/index.pug');
         
-        app.use(bodyParser.json());
-        app.use(bodyParser.urlencoded({ extended: false }));
-
-        app.set(express.static(__dirname + '/dist'));
-        app.use(bundler.middleware());
-        app.listen(5000);
     }
 }
