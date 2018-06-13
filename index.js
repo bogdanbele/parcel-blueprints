@@ -10,7 +10,7 @@ console.log('here in script');
 console.log('before bundler');
 
 
-let bundler = new Bundler('src/pages/index.pug');
+
 bundleSettup(__dirname, 'dev');
 
 console.log('after bundler');
@@ -32,6 +32,7 @@ console.log('after paths');
 
 
 
+let bundler = new Bundler('src/pages/index.pug');
 app.use(bundler.middleware());
 console.log('after middleware');
 app.listen(5000);
