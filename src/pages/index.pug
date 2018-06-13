@@ -1,6 +1,10 @@
 extends _layout.pug
 
+
+
 block content
+  style
+    include _main.scss
   .webPath
     each link in map.links
       a(href=link) #{link}
