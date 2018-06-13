@@ -2,6 +2,16 @@ const { bundleSettup } = require('./modules/bundleSettup');
 const express = require('express');
 const Bundler = require('parcel-bundler');
 const app = express();
+const exec = require('child_process').exec;
+
+exec('sh watches.sh',
+    (error, stdout, stderr) => {
+        console.log(`${stdout}`);
+        console.log(`${stderr}`);
+        if (error !== null) {
+            console.log(`exec error: ${error}`);
+        }
+    });
 
 
 const { exec } = require('child_process');
@@ -22,7 +32,7 @@ app.get('/', function (req, res) {
 });
 
 
-app.get('/stadiums',function (req, res) {
+app.get('/stadiums', function (req, res) {
     //console.log(directoryName + '/dist/' + requestPath);
     res.sendFile(__dirname + '/dist/stadiums/index.html');
     //console.log(directoryName);
