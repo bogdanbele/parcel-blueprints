@@ -33,6 +33,7 @@ console.log('after paths');
 
 
 let bundler = new Bundler('src/pages/index.pug');
+await bundler.bundle();
 app.use(bundler.middleware());
 console.log('after middleware');
 app.listen(5000);

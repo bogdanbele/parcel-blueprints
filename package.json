@@ -5,7 +5,7 @@
   "scripts": {
     "start": "parcel src/pug/index.pug --open",
     "build2": "parcel build src/pug/index.pug",
-    "build": "NODE_ENV=production && node prebuild.js && parcel build src/pages/i*.pug -d dist --public-url ./ && node postbuild.js",
+    "build": "NODE_ENV=production && node prebuild.js && parcel build src/pages/index.pug -d dist --public-url ./ && node postbuild.js",
     "dev": "node index.js",
     "cleanData": "node postbuild.js",
     "template-build": "node buildTemplate.js"
