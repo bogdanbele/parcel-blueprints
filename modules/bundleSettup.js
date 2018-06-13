@@ -99,14 +99,6 @@ function bundleSettup(directoryName, env) {
         //////////////////// CREATE DATA.PUG ////////////////////
 
         fs.writeFileSync(directoryName + '/src/pages/' + expressPath + '/_data.pug', dataAsPug, 'utf8');
-
-
-
-        if (env == 'dev') {
-            
-        }
-
-
     });
 
     requestPathsArray.links = links;
@@ -120,14 +112,4 @@ function bundleSettup(directoryName, env) {
                 linksAsPug += '- remoteData =' + indentString(JSON.stringify(worldCupData), 1, { indent: '\t' });
                 fs.writeFileSync(directoryName + '/src/pages/_links.pug', linksAsPug, 'utf8');
             });
-    if (env == 'dev') {
-
-
-
-
-
-        //////////////////// START SERVER ////////////////////
-
-        
-    }
 }

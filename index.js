@@ -4,14 +4,6 @@ const Bundler = require('parcel-bundler');
 const app = express();
 const exec = require('child_process').exec;
 
-exec('echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p',
-    (error, stdout, stderr) => {
-        console.log(`${stdout}`);
-        console.log(`${stderr}`);
-        if (error !== null) {
-            console.log(`exec error: ${error}`);
-        }
-    });
 
 console.log('here in script');
 
