@@ -13,8 +13,6 @@ exec('sh watches.sh',
         }
     });
 
-
-const { exec } = require('child_process');
 console.log('here in script');
 
 console.log('before bundler');
