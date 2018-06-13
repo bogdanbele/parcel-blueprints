@@ -28,6 +28,7 @@
     "pug": "^2.0.3"
   },
   "dependencies": {
+    "autoprefixer": "^8.6.2",
     "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
     "css-modules-loader-core": "^1.1.0",
