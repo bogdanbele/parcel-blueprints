@@ -2,7 +2,10 @@ extends _layout.pug
 
 block content
     +content
+        +flex()
+            h1 Stadiums
         +row('around')
+            
             each stadium in data.stadiums.stadiums
                 +flex('3','stadium')
                     .left
